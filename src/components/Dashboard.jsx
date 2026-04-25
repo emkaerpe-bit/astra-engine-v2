@@ -4,6 +4,7 @@ import { gsap } from 'gsap';
 import { Sun, Moon, ArrowUp, Lock, Star, Zap, Layers } from 'lucide-react';
 import ZodiacWheel from './ZodiacWheel';
 import EphemerisTable from './EphemerisTable';
+import DispositorAnalysis from './DispositorAnalysis';
 import AstroHeader from './AstroHeader';
 import DataPanel from './DataPanel';
 import TriangularAspectGrid from './TriangularAspectGrid';
@@ -11,6 +12,7 @@ import AstroControlPanel from './AstroControlPanel';
 import TransitControl from './TransitControl';
 import TransitLaboratory from './TransitLaboratory';
 import { PlanetGlyph, ZodiacGlyph } from './Glyphs';
+import MoonPhase from './MoonPhase';
 import { t } from '../utils/astroTranslations';
 
 const BIG_THREE_ICONS = {
@@ -26,22 +28,35 @@ export default function Dashboard({
   setActivePlanets,
   activeAspects,
   setActiveAspects,
+  activeLots,
+  activeStars,
   isTransitActive,
   setIsTransitActive,
   showLaboratory,
   setShowLaboratory,
-  transitData
+  transitData,
+  prognosticData,
+  onTimeChange,
+  showTimeMachine,
+  onToggleTimeMachine,
+  onHouseSystemChange,
+  activePatterns,
+  setShowDispositorLaboratory
 }) {
   const dashRef = useRef(null);
   const ctxRef = useRef(null);
   const [tooltip, setTooltip] = React.useState(null);
 
   const handleShowTooltip = (e, content) => {
-    setTooltip({
-      content,
-      x: e.clientX + 15,
-      y: e.clientY + 15
-    });
+    const tooltipWidth = 220;
+    const tooltipHeight = 100;
+    let x = e.clientX + 15;
+    let y = e.clientY + 15;
+
+    if (x + tooltipWidth > window.innerWidth) x = e.clientX - tooltipWidth - 10;
+    if (y + tooltipHeight > window.innerHeight) y = e.clientY - tooltipHeight - 10;
+
+    setTooltip({ x, y, content });
   };
 
   const handleHideTooltip = () => setTooltip(null);
@@ -118,7 +133,7 @@ export default function Dashboard({
             <div className="card-reveal translate-y-4 font-mono">
               <div className="flex items-center gap-2 mb-1">
                 <div className="w-1.5 h-1.5 rounded-full bg-[#8C8883] animate-pulse" />
-                <h1 className="text-[#1F2226] text-sm font-serif italic tracking-tight uppercase">Astra Engine v2.7 Professional</h1>
+                <h1 className="text-[#1F2226] text-sm font-serif italic tracking-tight uppercase">Ad Astra v3.0 Professional</h1>
               </div>
               <div className="text-[10px] text-[#1F2226] uppercase tracking-tighter leading-tight font-bold">
                 <div className="bg-[#1F2226] text-[#F1E9DE] px-2 py-0.5 rounded inline-block mb-1">
@@ -206,6 +221,10 @@ export default function Dashboard({
               </div>
             </div>
 
+            <MoonPhase 
+              sunLng={planets.find(p => p.key === 'sun')?.longitude || 0}
+              moonLng={planets.find(p => p.key === 'moon')?.longitude || 0}
+            />
           </div>
 
           {/* RIGHT: Zodiac Wheel */}
@@ -216,7 +235,11 @@ export default function Dashboard({
                 chartData={chartData} 
                 activePlanets={activePlanets}
                 activeAspects={activeAspects}
+                activeLots={activeLots}
+                activeStars={activeStars}
+                activePatterns={activePatterns}
                 transitData={isTransitActive ? transitData : null}
+                prognosticData={prognosticData}
               />
             </div>
           </div>
@@ -245,7 +268,12 @@ export default function Dashboard({
             <h3 className="font-serif italic text-3xl text-[#1F2226] font-bold">Macierz Astronomiczna</h3>
             <p className="text-[#8C8883] text-xs font-mono mt-2 tracking-widest uppercase font-bold">Protokół Głębokich Danych v1.0</p>
           </div>
-          <EphemerisTable planets={planets} houses={houses} />
+          <EphemerisTable 
+            planets={planets} 
+            houses={houses} 
+            onHouseSystemChange={onHouseSystemChange} 
+          />
+          
         </div>
       </div>
 
@@ -272,6 +300,9 @@ export default function Dashboard({
         onClose={() => setShowLaboratory(false)}
         activePlanets={activePlanets}
         activeAspects={activeAspects}
+        onTimeChange={onTimeChange}
+        showTimeMachine={showTimeMachine}
+        onToggleTimeMachine={onToggleTimeMachine}
       />
     )}
   </>

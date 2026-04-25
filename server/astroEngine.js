@@ -1,19 +1,38 @@
 /**
- * Astra Engine — Swiss Ephemeris Data Layer (FREE & PRO Edition)
- * Integration: sweph (Native Swiss Ephemeris for Node.js)
+ * Ad Astra — Swiss Ephemeris Data Layer (Professional Edition)
  * Precision: Sub-arcsecond (JPL DE431 standard)
- * Cost: 0 PLN
+ * Implementation: Solar Fire & Hellenistic Standards
  */
 
 import sweph from 'sweph';
 import { DateTime } from 'luxon';
 import tzlookup from 'tz-lookup';
-// We use the full Swiss Ephemeris data files located in server/ephe
-// Using relative path to avoid issues with spaces in directory names on Windows
+
 sweph.set_ephe_path('./server/ephe');
+
+const PLANET_COLORS = {
+  sun: '#FFD700', moon: '#C0C0C0', mercury: '#FFA500', venus: '#4CAF50', mars: '#FF4136',
+  jupiter: '#9B51E0', saturn: '#5D4037', uranus: '#00BCD4', neptune: '#2196F3', pluto: '#8B0000',
+  node: '#1F2226', chiron: '#B8A456', lilith: '#000000', fortune: '#D4AF37', spirit: '#9B51E0', eros: '#FF69B4'
+};
+
+const VALENS_YEARS = {
+  0: 15, 1: 8, 2: 20, 3: 25, 4: 19, 5: 20,
+  6: 8, 7: 15, 8: 12, 9: 27, 10: 30, 11: 12
+};
 
 const SIGN_SYMBOLS = ['♈','♉','♊','♋','♌','♍','♎','♏','♐','♑','♒','♓'];
 const SIGNS = ['Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius', 'Capricorn', 'Aquarius', 'Pisces'];
+
+const MODERN_RULERS = {
+  'Aries': 'mars', 'Taurus': 'venus', 'Gemini': 'mercury', 'Cancer': 'moon', 'Leo': 'sun', 'Virgo': 'mercury',
+  'Libra': 'venus', 'Scorpio': 'pluto', 'Sagittarius': 'jupiter', 'Capricorn': 'saturn', 'Aquarius': 'uranus', 'Pisces': 'neptune'
+};
+
+const TRADITIONAL_RULERS = {
+  'Aries': 'mars', 'Taurus': 'venus', 'Gemini': 'mercury', 'Cancer': 'moon', 'Leo': 'sun', 'Virgo': 'mercury',
+  'Libra': 'venus', 'Scorpio': 'mars', 'Sagittarius': 'jupiter', 'Capricorn': 'saturn', 'Aquarius': 'saturn', 'Pisces': 'jupiter'
+};
 
 const PLANETS = [
   { id: sweph.constants.SE_SUN,     key: 'sun',     name: 'Sun',     symbol: '☉' },
@@ -27,23 +46,35 @@ const PLANETS = [
   { id: sweph.constants.SE_NEPTUNE, key: 'neptune', name: 'Neptune', symbol: '♆' },
   { id: sweph.constants.SE_PLUTO,   key: 'pluto',   name: 'Pluto',   symbol: '♇' },
   { id: sweph.constants.SE_TRUE_NODE,key: 'node',   name: 'True Node', symbol: '☊' },
-  { id: sweph.constants.SE_MEAN_APOG,key: 'lilith', name: 'Lilith',  symbol: '⚸' },
   { id: sweph.constants.SE_CHIRON,  key: 'chiron',  name: 'Chiron',  symbol: '⚷' },
+  { id: sweph.constants.SE_MEAN_APOG,key: 'lilith', name: 'Lilith',  symbol: '⚸' },
 ];
 
+const STARS = [
+  "Algol", "Alcyone", "Aldebaran", "Rigel", "Sirius", 
+  "Castor", "Pollux", "Regulus", "Spica", "Arcturus", 
+  "Antares", "Vega", "Altair", "Fomalhaut", "Deneb Algedi"
+];
+
+const HOUSE_SYSTEMS = {
+  'P': 'Placidus', 'K': 'Koch', 'W': 'Whole Sign', 'E': 'Equal', 'R': 'Regiomontanus',
+  'C': 'Campanus', 'M': 'Morinus', 'O': 'Porphyrius', 'T': 'Topocentric (Polich/Page)'
+};
+
+/**
+ * UTILITIES
+ */
 function toSafeFixed(val, digits = 4) {
   const num = Number(val);
   return isNaN(num) ? "0.0000" : num.toFixed(digits);
 }
 
-/**
- * Normalizes degree to DMS format: 14° 22' Scorpio
- */
-function formatSiderealTime(decimalHours) {
-  const h = Math.floor(decimalHours);
-  const m = Math.floor((decimalHours * 60) % 60);
-  const s = Math.floor((decimalHours * 3600) % 60);
-  return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+function formatCoord(val) {
+  const absVal = Math.abs(val);
+  const deg = Math.floor(absVal);
+  const min = Math.floor((absVal - deg) * 60);
+  const sign = val < 0 ? '-' : '';
+  return `${sign}${deg}° ${String(min).padStart(2, '0')}'`;
 }
 
 function formatDegree(totalLng) {
@@ -53,7 +84,6 @@ function formatDegree(totalLng) {
   const d = Math.floor(signDeg);
   const m = Math.floor((signDeg - d) * 60);
   const s = Math.floor(((signDeg - d) * 60 - m) * 60);
-  
   return {
     formatted: `${d}° ${String(m).padStart(2, '0')}' ${String(s).padStart(2, '0')}" ${SIGNS[signIdx]}`,
     degreeInSign: `${d}° ${String(m).padStart(2, '0')}' ${String(s).padStart(2, '0')}"`,
@@ -64,203 +94,167 @@ function formatDegree(totalLng) {
   };
 }
 
-function formatLatDecl(val) {
-  const abs = Math.abs(val);
-  const d = Math.floor(abs);
-  const m = Math.floor((abs - d) * 60);
-  const s = Math.floor(((abs - d) * 60 - m) * 60);
-  const dir = val >= 0 ? 'N' : 'S';
-  return `${d}° ${String(m).padStart(2, '0')}' ${String(s).padStart(2, '0')}" ${dir}`;
+/**
+ * ZODIACAL RELEASING HELPER
+ */
+export function calculateZodiacalReleasing(lotLng, startJD) {
+    const startSign = Math.floor(lotLng / 30);
+    const periods = [];
+    let currentJD = startJD;
+    let currentSign = startSign;
+
+    for (let i = 0; i < 12; i++) {
+        const signIdx = currentSign % 12;
+        const years = VALENS_YEARS[signIdx];
+        const days = years * 360; // Valens 360-day year
+        
+        periods.push({
+            sign: SIGNS[signIdx],
+            symbol: SIGN_SYMBOLS[signIdx],
+            years,
+            startDate: DateTime.fromMillis((currentJD - 2440587.5) * 86400000).toISODate(),
+            endJD: currentJD + days
+        });
+        
+        currentJD += days;
+        currentSign = (currentSign + 1) % 12;
+    }
+    return periods;
 }
 
 /**
- * Main Calculator — Uses local Swiss Ephemeris engine
+ * DISPOSITORS LOGIC
  */
-export async function calculateChart({ year, month, day, hour, minute, lat, lng, timeKnown = true }) {
-  try {
-    // 0. Polar Zone Validation (Placidus limitation)
-    if (Math.abs(parseFloat(lat)) > 66.5) {
-      throw new Error('Placidus house system is not available for polar regions (lat > 66.5°). Please choose a different location or system.');
-    }
+function calculateDispositors(planets, system = 'traditional') {
+  const rulers = system === 'modern' ? MODERN_RULERS : TRADITIONAL_RULERS;
+  const mainPlanets = system === 'modern' 
+    ? ['sun', 'moon', 'mercury', 'venus', 'mars', 'jupiter', 'saturn', 'uranus', 'neptune', 'pluto']
+    : ['sun', 'moon', 'mercury', 'venus', 'mars', 'jupiter', 'saturn'];
+  
+  const relevant = planets.filter(p => mainPlanets.includes(p.key));
+  const directMap = {};
+  relevant.forEach(p => { directMap[p.key] = rulers[p.sign]; });
 
-    // 1. Resolve Time to Julian Day (UTC)
+  const summary = {};
+  mainPlanets.forEach(k => {
+    summary[k] = { directCount: 0, indirectCount: 0, totalWeight: 0, directSubjects: [], indirectSubjects: [] };
+  });
+
+  const mutualReceptions = [];
+  const finalDispositors = [];
+  const chains = {};
+
+  relevant.forEach(p => {
+    const chain = [];
+    let current = p.key;
+    const visited = new Set();
+    while (current && !visited.has(current)) {
+      visited.add(current);
+      chain.push(current);
+      const next = directMap[current];
+      if (!next) break;
+      if (summary[next]) {
+        if (chain.length === 1) { summary[next].directCount++; summary[next].directSubjects.push(p.key); }
+        else { summary[next].indirectCount++; summary[next].indirectSubjects.push(p.key); }
+      }
+      if (next === current) { if (!finalDispositors.includes(current)) finalDispositors.push(current); break; }
+      current = next;
+    }
+    chains[p.key] = chain;
+  });
+
+  return { summary, chains, finalDispositors, mutualReceptions };
+}
+
+/**
+ * MAIN CALCULATION PIPELINE
+ */
+export async function calculateChart({ year, month, day, hour, minute, lat, lng, houseSystem = 'P' }) {
+  try {
     const tz = tzlookup(lat, lng);
     const dt = DateTime.fromObject({ year, month, day, hour, minute }, { zone: tz });
     const utc = dt.toUTC();
-    
-    // Calculate Julian Day
     const jd = sweph.julday(utc.year, utc.month, utc.day, utc.hour + utc.minute / 60, sweph.constants.SE_GREG_CAL);
 
-    console.log(`[ASTRA] Input: ${year}-${month}-${day} ${hour}:${minute} | TZ: ${tz}`);
-    console.log(`[ASTRA] UTC: ${utc.toISO()} | JD: ${jd}`);
-    
-    // Calculate Delta T (difference between UT and TT)
-    const deltaT = sweph.deltat(jd);
-    console.log(`[ASTRA] DeltaT: ${deltaT}`);
-    const jdEt = jd + deltaT / 86400.0; // Ephemeris Time for internal high precision
-
-    // 2. Calculate Planets
     const planetResults = PLANETS.map(p => {
       const res = sweph.calc_ut(jd, p.id, sweph.constants.SEFLG_SPEED | sweph.constants.SEFLG_SWIEPH);
-      
-      // sweph returns data in 'longitude' or inside a 'data' array depending on version/build
-      let longitude = 0;
-      if (res) {
-        longitude = res.longitude !== undefined ? res.longitude : (res.data ? res.data[0] : 0);
-      }
-      
-      const dms = formatDegree(longitude);
-      const isRetrograde = res && res.data && res.data[3] < 0; 
-      
+      const resEqu = sweph.calc_ut(jd, p.id, sweph.constants.SEFLG_EQUATORIAL | sweph.constants.SEFLG_SWIEPH);
+      const longitude = res.longitude !== undefined ? res.longitude : (res.data ? res.data[0] : 0);
       return {
         ...p,
         longitude: parseFloat(toSafeFixed(longitude, 4)),
+        latitude: parseFloat(toSafeFixed(res.data ? res.data[1] : 0, 4)),
+        declination: parseFloat(toSafeFixed(resEqu.data ? resEqu.data[1] : 0, 4)),
         speed: parseFloat(toSafeFixed(res.data[3], 4)),
-        latitude: parseFloat(toSafeFixed(res.data[1], 4)),
-        declination: parseFloat(toSafeFixed(res.data[2], 4)),
-        speedFormatted: formatSiderealTime(Math.abs(res.data[3])), // reusing formatter for speed
-        latFormatted: formatLatDecl(res.data[1]),
-        declFormatted: formatLatDecl(res.data[2]),
-        isRetrograde,
-        ...dms,
+        isRetrograde: res.data[3] < 0,
+        ...formatDegree(longitude),
         house: 0 
       };
     });
 
-    // 3. Calculate House Cusps (Placidus)
-    let houseRes;
-    try {
-      houseRes = sweph.houses(jd, parseFloat(lat), parseFloat(lng), 'P');
-    } catch (hErr) {
-      console.error('[ASTRA] sweph.houses library crash:', hErr);
-    }
+    // South Node
+    const nNode = planetResults.find(p => p.key === 'node');
+    const southNodeLng = (nNode.longitude + 180) % 360;
+    planetResults.push({ key: 'south_node', name: 'South Node', symbol: '☋', longitude: southNodeLng, speed: nNode.speed, isRetrograde: nNode.isRetrograde, ...formatDegree(southNodeLng), house: 0 });
 
-    let cusps = [];
-    let ascendantLng = 0;
-    let mcLng = 0;
+    const houseRes = sweph.houses(jd, parseFloat(lat), parseFloat(lng), houseSystem);
+    const cusps = houseRes.cusps.map((c, i) => ({ house: i + 1, longitude: c, ...formatDegree(c) }));
+    const asc = houseRes.points[0];
 
-    // Correctly handle the response format: { data: { houses: [], points: [] } }
-    const actualCusps = houseRes?.data?.houses || houseRes?.cusps;
-    const actualPoints = houseRes?.data?.points || [];
-
-    if (actualCusps && Array.isArray(actualCusps)) {
-      // Handle potential 13-element array or 12-element array
-      const rawCusps = actualCusps.length === 13 ? actualCusps.slice(1) : actualCusps;
-      
-      cusps = rawCusps.map((c, i) => {
-        const formatted = formatDegree(c);
-        return { 
-          house: i + 1, 
-          longitude: c, 
-          ...formatted
-        };
-      });
-
-      // In some builds, Ascendant/MC are in 'points' array
-      // points[0] = Asc, points[1] = MC
-      ascendantLng = actualPoints[0] !== undefined ? actualPoints[0] : (houseRes.ascendant || rawCusps[0]);
-      mcLng = actualPoints[1] !== undefined ? actualPoints[1] : (houseRes.mc || rawCusps[9]);
-      
-      console.log(`[ASTRA] Successfully parsed Placidus: Asc=${ascendantLng}, MC=${mcLng}`);
-    } else {
-      console.error('[ASTRA] Critical: Swiss Ephemeris returned no house data!', houseRes);
-      throw new Error('Astronomical engine failed to generate houses.');
-    }
-
-    const asc = formatDegree(ascendantLng);
-    // Assign planets to houses
-    const cuspValues = cusps.map(c => c.longitude);
     planetResults.forEach(p => {
-      p.house = getHouse(p.longitude, cuspValues);
+      const lng = p.longitude;
+      for (let i = 0; i < 12; i++) {
+        let start = houseRes.cusps[i], end = houseRes.cusps[(i + 1) % 12];
+        if (end < start) end += 360;
+        let testLng = lng;
+        if (testLng < start) testLng += 360;
+        if (testLng >= start && testLng < end) { 
+          p.house = i + 1; 
+          break; 
+        }
+      }
     });
 
+    // SECT & LOTS (Solar Fire Standards)
     const sun = planetResults.find(p => p.key === 'sun');
     const moon = planetResults.find(p => p.key === 'moon');
+    const isDay = sun.house >= 7 && sun.house <= 12;
 
-    // 4. Hellenistic Core: Sect & Lots
-    const isDayChart = sun.longitude >= cusps[6].longitude || sun.longitude <= cusps[0].longitude; 
-    // Note: This is a simplification; a more precise check uses the actual house index or horizon.
-    // Let's use the house number for a more robust check in this context.
-    const sunHouse = sun.house;
-    const sect = (sunHouse >= 7 && sunHouse <= 12) ? 'Day' : 'Night';
-
-    // Lot of Fortune (Tyche) & Lot of Spirit (Daimon)
-    // Formula: Day: AC + Moon - Sun | Night: AC + Sun - Moon (Fortune)
-    // Spirit is the inverse of Fortune projection.
-    let fortuneLng, spiritLng;
-    if (sect === 'Day') {
-      fortuneLng = (ascendantLng + moon.longitude - sun.longitude + 360) % 360;
-      spiritLng = (ascendantLng + sun.longitude - moon.longitude + 360) % 360;
-    } else {
-      fortuneLng = (ascendantLng + sun.longitude - moon.longitude + 360) % 360;
-      spiritLng = (ascendantLng + moon.longitude - sun.longitude + 360) % 360;
-    }
-
-    const fortune = { key: 'fortune', name: 'Lot of Fortune', symbol: '⊗', ...formatDegree(fortuneLng) };
-    const spirit = { key: 'spirit', name: 'Lot of Spirit', symbol: 'Φ', ...formatDegree(spiritLng) };
-
-    // 5. Calculate Aspects
-    const aspects = calculateAspects(planetResults);
-
-    // 6. AI Context Serialization (Ground Truth for LLM)
-    const aiContext = serializeForAI({
-      input: { year, month, day, hour, minute, lat, lng },
-      planets: planetResults,
-      houses: cusps,
-      aspects,
-      hellenistic: { sect, fortune, spirit }
-    });
-
-    const mc = formatDegree(mcLng);
-
-    // Calculate Sidereal Time (LST)
-    const siderealTimeRaw = sweph.sidtime(jd);
-    const siderealTime = formatSiderealTime(siderealTimeRaw);
-
-    return {
-      input: { year, month, day, hour, minute, location: { resolved: "User Location", lat, lng } },
-      bigThree: {
-        sun: { ...sun },
-        moon: { ...moon },
-        rising: { ...asc, available: timeKnown }
-      },
-      planets: planetResults,
-      houses: {
-        system: 'Placidus (Swiss Ephemeris)',
-        cusps,
-        ascendant: { longitude: ascendantLng, formatted: asc.formatted, declination: formatLatDecl(houseRes?.data?.points?.[2] || 0) },
-        midheaven: { longitude: mcLng, formatted: formatDegree(mcLng).formatted, declination: formatLatDecl(houseRes?.data?.points?.[3] || 0) },
-        ic: { longitude: (cusps[3]?.longitude), formatted: cusps[3]?.formatted },
-        descendant: { longitude: (cusps[6]?.longitude), formatted: cusps[6]?.formatted }
-      },
-      aspects,
-      hellenistic: {
-        sect,
-        fortune,
-        spirit
-      },
-      aiContext,
-      harmonics: {
-        h9: calculateHarmonic(planetResults, 9),
-        h41: calculateHarmonic(planetResults, 41)
-      },
-      meta: {
-        engine: 'Local Swiss Ephemeris (sweph)',
-        houseSystem: 'Placidus',
-        zodiac: 'Tropical',
-        precision: 'Sub-arcsecond (JPL DE431)',
-        calculatedAt: new Date().toISOString()
-      }
+    const calculateLot = (p1, p2, p3, reverse = false) => {
+      let l1 = p1, l2 = p2, l3 = p3;
+      if (!isDay) [l2, l3] = [l3, l2]; // Hellenistic inversion for night
+      let res = (l1 + l2 - l3 + 720) % 360;
+      return { longitude: res, ...formatDegree(res) };
     };
 
-  } catch (error) {
-    console.error('[ASTRA] local SwissEph Error Details:', error);
-    throw new Error(`Local astronomical engine failed: ${error.message}`);
-  }
+    const lots = [
+      { key: 'fortune', name: 'Lot of Fortune', symbol: '⊗', ...calculateLot(asc, moon.longitude, sun.longitude) },
+      { key: 'spirit',  name: 'Lot of Spirit',  symbol: '🕯️', ...calculateLot(asc, sun.longitude, moon.longitude) }
+    ];
+
+    const spiritLng = lots[1].longitude;
+    const venusLng = planetResults.find(p => p.key === 'venus')?.longitude || 0;
+    lots.push({ key: 'eros', name: 'Lot of Eros', symbol: '❤', longitude: (asc + (isDay ? venusLng - spiritLng : spiritLng - venusLng) + 720) % 360, ...formatDegree((asc + (isDay ? venusLng - spiritLng : spiritLng - venusLng) + 720) % 360) });
+
+    const aspects = calculateAspects(planetResults);
+    const releasing = { fortune: calculateZodiacalReleasing(lots[0].longitude, jd), spirit: calculateZodiacalReleasing(lots[1].longitude, jd) };
+
+    return {
+      input: { year, month, day, hour, minute, lat, lng },
+      planets: planetResults,
+      lots,
+      houses: { cusps, ascendant: { longitude: asc, ...formatDegree(asc) } },
+      aspects,
+      patterns: calculateAspectPatterns(planetResults, aspects),
+      releasing,
+      sect: isDay ? 'Day' : 'Night',
+      metadata: { jd, calculatedAt: new Date().toISOString() }
+    };
+  } catch (error) { throw new Error(`Engine Error: ${error.message}`); }
 }
 
 /**
- * Calculates planetary positions for transits (simplified)
+ * TRANSITS & PROGNOSTICS (Solar Fire Standard)
  */
 export async function calculateTransits({ year, month, day, hour, minute, lat, lng }) {
   try {
@@ -271,94 +265,67 @@ export async function calculateTransits({ year, month, day, hour, minute, lat, l
 
     const transitPlanets = PLANETS.map(p => {
       const res = sweph.calc_ut(jd, p.id, sweph.constants.SEFLG_SPEED | sweph.constants.SEFLG_SWIEPH);
-      let longitude = 0;
-      if (res) {
-        longitude = res.longitude !== undefined ? res.longitude : (res.data ? res.data[0] : 0);
-      }
-      return {
-        ...p,
-        longitude: parseFloat(toSafeFixed(longitude, 4)),
-        speed: parseFloat(toSafeFixed(res.data[3], 4)),
-        latitude: parseFloat(toSafeFixed(res.data[1], 4)),
-        declination: parseFloat(toSafeFixed(res.data[2], 4)),
-        speedFormatted: formatSiderealTime(Math.abs(res.data[3])),
-        latFormatted: formatLatDecl(res.data[1]),
-        declFormatted: formatLatDecl(res.data[2]),
-        ...formatDegree(longitude)
-      };
+      let longitude = res.longitude !== undefined ? res.longitude : (res.data ? res.data[0] : 0);
+      return { ...p, longitude, speed: res.data ? res.data[3] : 0, ...formatDegree(longitude) };
     });
 
-    return {
-      planets: transitPlanets,
-      jd,
-      meta: {
-        calculatedAt: new Date().toISOString(),
-        transitDate: { year, month, day, hour, minute }
-      }
-    };
-  } catch (error) {
-    console.error('[ASTRA] Transit Calc Error:', error);
-    throw new Error(`Transit calculation failed: ${error.message}`);
-  }
+    const nNode = transitPlanets.find(p => p.key === 'node');
+    const southNodeLng = (nNode.longitude + 180) % 360;
+    transitPlanets.push({ key: 'south_node', name: 'South Node', symbol: '☋', longitude: southNodeLng, ...formatDegree(southNodeLng) });
+
+    return { planets: transitPlanets, jd, metadata: { calculatedAt: new Date().toISOString() } };
+  } catch (error) { throw new Error(`Transit Error: ${error.message}`); }
 }
 
-/**
- * Determines house index for a given longitude
- */
-function getHouse(lng, cusps) {
-  for (let i = 0; i < 12; i++) {
-    const next = (i + 1) % 12;
-    let start = cusps[i];
-    let end = cusps[next];
-    if (end < start) end += 360;
-    let l = lng;
-    if (l < start) l += 360;
-    if (l >= start && l < end) return i + 1;
-  }
-  return 1;
+export async function calculatePrognostics({ birthDate, targetDate, type, lat, lng }) {
+  try {
+    const bDt = DateTime.fromISO(birthDate.replace(' ', 'T')).toUTC();
+    const tDt = DateTime.fromISO(targetDate.replace(' ', 'T')).toUTC();
+    const birthJD = sweph.julday(bDt.year, bDt.month, bDt.day, bDt.hour + bDt.minute / 60, sweph.constants.SE_GREG_CAL);
+    const targetJD = sweph.julday(tDt.year, tDt.month, tDt.day, tDt.hour + tDt.minute / 60, sweph.constants.SE_GREG_CAL);
+    const diffYears = (targetJD - birthJD) / 365.242199;
+
+    if (type === 'secondary') {
+      const progressedJD = birthJD + diffYears;
+      const results = PLANETS.map(p => {
+        const res = sweph.calc_ut(progressedJD, p.id, sweph.constants.SEFLG_SWIEPH);
+        const longitude = res.longitude !== undefined ? res.longitude : (res.data ? res.data[0] : 0);
+        return { ...p, longitude, ...formatDegree(longitude) };
+      });
+      return { planets: results, type: 'Secondary Progressions', years: diffYears };
+    } 
+    
+    if (type === 'solar_arc') {
+      const sunBirthRes = sweph.calc_ut(birthJD, sweph.constants.SE_SUN, sweph.constants.SEFLG_SWIEPH);
+      const sunTargetRes = sweph.calc_ut(birthJD + diffYears, sweph.constants.SE_SUN, sweph.constants.SEFLG_SWIEPH);
+      const arc = (sunTargetRes.longitude - sunBirthRes.longitude + 360) % 360;
+      const results = PLANETS.map(p => {
+        const res = sweph.calc_ut(birthJD, p.id, sweph.constants.SEFLG_SWIEPH);
+        const directedLng = (res.longitude + arc) % 360;
+        return { ...p, longitude: directedLng, ...formatDegree(directedLng) };
+      });
+      return { planets: results, type: 'Solar Arc Directions', arc, years: diffYears };
+    }
+  } catch (error) { throw new Error(`Prognostic Error: ${error.message}`); }
 }
 
-/**
- * Basic Aspect Engine
- */
 function calculateAspects(planets) {
   const aspects = [];
-  const innerPlanets = ['sun', 'moon', 'mercury', 'venus', 'mars'];
   const DEFS = [
     { name: 'Conjunction', symbol: '☌', angle: 0, orb: 8 },
     { name: 'Sextile', symbol: '⚹', angle: 60, orb: 6 },
     { name: 'Square', symbol: '□', angle: 90, orb: 7 },
     { name: 'Trine', symbol: '△', angle: 120, orb: 8 },
-    { name: 'Opposition', symbol: '☍', angle: 180, orb: 8 },
-    // Minor Aspects
-    { name: 'Semi-Sextile', symbol: '⚺', angle: 30, orb: 2 },
-    { name: 'Quincunx', symbol: '⚼', angle: 150, orb: 3 },
-    { name: 'Semi-Square', symbol: '∠', angle: 45, orb: 2 },
-    { name: 'Sesquiquadrate', symbol: '⚵', angle: 135, orb: 2 },
-    { name: 'Quintile', symbol: 'Q', angle: 72, orb: 1.5 },
-    { name: 'Bi-Quintile', symbol: 'bQ', angle: 144, orb: 1.5 }
+    { name: 'Quincunx', symbol: 'ㅈ', angle: 150, orb: 3 },
+    { name: 'Opposition', symbol: '☍', angle: 180, orb: 8 }
   ];
-
   for (let i = 0; i < planets.length; i++) {
     for (let j = i + 1; j < planets.length; j++) {
-      const p1 = planets[i];
-      const p2 = planets[j];
-      const isInner = innerPlanets.includes(p1.key) && innerPlanets.includes(p2.key);
-      
-      let diff = Math.abs(p1.longitude - p2.longitude);
+      let diff = Math.abs(planets[i].longitude - planets[j].longitude);
       if (diff > 180) diff = 360 - diff;
-
       for (const asp of DEFS) {
-        const orb = isInner ? asp.orb : asp.orb * 0.7;
-        if (Math.abs(diff - asp.angle) <= orb) {
-          aspects.push({
-            planet1: { key: p1.key, symbol: p1.symbol },
-            planet2: { key: p2.key, symbol: p2.symbol },
-            type: asp.name,
-            symbol: asp.symbol,
-            orb: parseFloat(toSafeFixed(Math.abs(diff - asp.angle), 2))
-          });
-          break;
+        if (Math.abs(diff - asp.angle) <= asp.orb) {
+          aspects.push({ planet1: { key: planets[i].key, symbol: planets[i].symbol }, planet2: { key: planets[j].key, symbol: planets[j].symbol }, type: asp.name, symbol: asp.symbol, orb: parseFloat(Math.abs(diff - asp.angle).toFixed(2)) });
         }
       }
     }
@@ -366,48 +333,35 @@ function calculateAspects(planets) {
   return aspects;
 }
 
-/**
- * Serializes chart data into a structured Markdown format for AI ingestion.
- * Prevents hallucinations by providing "Ground Truth" data.
- */
-function serializeForAI(data) {
-  let context = "### CELESTIAL GROUND TRUTH DATA\n\n";
-  
-  context += `#### PLACEMENTS\n`;
-  data.planets.forEach(p => {
-    context += `- ${p.name}: ${p.formatted} (House ${p.house})${p.isRetrograde ? ' [RETROGRADE]' : ''}\n`;
-  });
-  
-  context += `\n#### HOUSES (PLACIDUS)\n`;
-  data.houses.forEach(h => {
-    context += `- House ${h.house}: ${h.formatted}\n`;
-  });
-  
-  context += `\n#### HELLENISTIC POINTS\n`;
-  context += `- Sect: ${data.hellenistic.sect}\n`;
-  context += `- Lot of Fortune: ${data.hellenistic.fortune.formatted}\n`;
-  context += `- Lot of Spirit: ${data.hellenistic.spirit.formatted}\n`;
-  
-  context += `\n#### MAJOR ASPECTS\n`;
-  data.aspects.forEach(a => {
-    context += `- ${a.planet1.key} ${a.type} ${a.planet2.key} (Orb: ${a.orb}°)\n`;
-  });
-  
-  return context;
-}
+function calculateAspectPatterns(planets, aspects) {
+  const patterns = [];
+  const findAspect = (p1k, p2k, type) => aspects.find(a => ((a.planet1.key === p1k && a.planet2.key === p2k) || (a.planet1.key === p2k && a.planet2.key === p1k)) && (!type || a.type === type));
+  const MAJOR_POINTS = ['sun', 'moon', 'mercury', 'venus', 'mars', 'jupiter', 'saturn', 'uranus', 'neptune', 'pluto'];
+  const keys = planets.filter(p => MAJOR_POINTS.includes(p.key)).map(p => p.key);
 
-/**
- * Calculates planetary positions for a given harmonic.
- * Formula: (longitude * harmonic) % 360
- */
-function calculateHarmonic(planets, harmonic) {
-  return planets.map(p => {
-    const hLng = (p.longitude * harmonic) % 360;
-    return {
-      key: p.key,
-      name: p.name,
-      harmonicLongitude: parseFloat(toSafeFixed(hLng, 4)),
-      ...formatDegree(hLng)
-    };
-  });
+  const addPattern = (p) => {
+    const pSig = [...p.planets].sort().join('-') + p.type;
+    if (!patterns.some(prev => [...prev.planets].sort().join('-') + prev.type === pSig)) patterns.push(p);
+  };
+
+  // Grand Trine
+  for (let i = 0; i < keys.length; i++) {
+    for (let j = i + 1; j < keys.length; j++) {
+      for (let k = j + 1; k < keys.length; k++) {
+        if (findAspect(keys[i], keys[j], 'Trine') && findAspect(keys[j], keys[k], 'Trine') && findAspect(keys[k], keys[i], 'Trine')) addPattern({ type: 'Grand Trine', planets: [keys[i], keys[j], keys[k]] });
+      }
+    }
+  }
+
+  // T-Square
+  for (let i = 0; i < keys.length; i++) {
+    for (let j = i + 1; j < keys.length; j++) {
+      for (let k = 0; k < keys.length; k++) {
+        if (k === i || k === j) continue;
+        if (findAspect(keys[i], keys[j], 'Opposition') && findAspect(keys[i], keys[k], 'Square') && findAspect(keys[j], keys[k], 'Square')) addPattern({ type: 'T-Square', planets: [keys[i], keys[j], keys[k]], apex: keys[k] });
+      }
+    }
+  }
+
+  return patterns;
 }

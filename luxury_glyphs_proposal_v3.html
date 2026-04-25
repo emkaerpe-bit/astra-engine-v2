@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Ad Astra — Projekt Autorskich Glifów V3 (Korekta)</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@200;400&family=Playfair+Display:italic,wght@0,700;1,700&display=swap');
+
+        body {
+            background: #0F1113;
+            color: #F1E9DE;
+            font-family: 'Outfit', sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 80px 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .header h1 {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 3.5rem;
+            margin: 0;
+            color: #D4AF37;
+            text-shadow: 0 0 40px rgba(212, 175, 55, 0.4);
+        }
+
+        .header p {
+            font-size: 0.8rem;
+            letter-spacing: 0.5em;
+            text-transform: uppercase;
+            color: #8C8883;
+            margin-top: 15px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            max-width: 1200px;
+        }
+
+        .glyph-card {
+            background: #1A1D21;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            padding: 40px;
+            border-radius: 4px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .glyph-card:hover {
+            border-color: #D4AF37;
+            background: #1F2226;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.1);
+        }
+
+        .glyph-container {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 25px;
+        }
+
+        .glyph-card svg {
+            width: 100%;
+            height: 100%;
+            fill: none;
+            stroke: #D4AF37; /* TRUE GOLD */
+            stroke-width: 1.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.5));
+        }
+
+        .glyph-name {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            color: #D4AF37;
+            font-weight: bold;
+        }
+
+        .element-tag {
+            font-size: 9px;
+            color: #8C8883;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-top: 8px;
+        }
+
+        .badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 7px;
+            color: #8C8883;
+            font-weight: bold;
+            opacity: 0.5;
+        }
+
+        .footer {
+            margin-top: 100px;
+            color: #444;
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+        }
+    </style>
+</head>
+<body>
+
+    <div className="header">
+        <h1>Ad Astra</h1>
+        <p>Canonical Gold Signature V3.0</p>
+    </div>
+
+    <div className="grid">
+        <!-- 01 ARIES - FIRE -->
+        <div className="glyph-card">
+            <div className="badge">01</div>
+            <div className="glyph-container">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 21V10c0-3 2-6 6-6M12 10c0-3-2-6-6-6" />
+                    <circle cx="12" cy="10" r="0.8" fill="#D4AF37" />
+                </svg>
+            </div>
+            <div className="glyph-name">Aries</div>
+            <div className="element-tag">Ogień // Fire</div>
+        </div>
+
+        <!-- 02 TAURUS - EARTH -->
+        <div className="glyph-card">
+            <div className="badge">02</div>
+            <div className="glyph-container">
+                <svg viewBox="0 0 24 24">
+                    <circle cx="12" cy="14" r="6" />
+                    <path d="M4 4c2 6 14 6 16 0" />
+                </svg>
+            </div>
+            <div className="glyph-name">Taurus</div>
+            <div className="element-tag">Ziemia // Earth</div>
+        </div>
+
+        <!-- 03 GEMINI - AIR -->
+        <div className="glyph-card">
+            <div className="badge">03</div>
+            <div className="glyph-container">
+                <svg viewBox="0 0 24 24">
+                    <path d="M5 4h14M5 20h14M9 4v16M15 4v16" />
+                </svg>
+            </div>
+            <div className="glyph-name">Gemini</div>
+            <div className="element-tag">Powietrze // Air</div>
+        </div>
+
+        <!-- 04 CANCER - WATER -->
+        <div className="glyph-card">
+            <div className="badge">04</div>
+            <div className="glyph-container">
+                <svg viewBox="0 0 24 24">
+                    <circle cx="8" cy="9" r="3" />
+                    <circle cx="16" cy="15" r="3" />
+                    <path d="M8 6c8 0 12 5 12 5M16 18C8 18 4 13 4 13" />
+                </svg>
+            </div>
+            <div className="glyph-name">Cancer</div>
+            <div className="element-tag">Woda // Water</div>
+        </div>
+
+        <!-- 05 LEO - FIRE -->
+        <div className="glyph-card">
+            <div className="badge">05</div>
+            <div className="glyph-container">
+                <svg viewBox="0 0 24 24">
+                    <circle cx="6" cy="16" r="3" />
+                    <path d="M9 16c0-8 6-12 10-12s3 3 3 6c0 6-6 6-6 11" />
+                </svg>
+            </div>
+            <div className="glyph-name">Leo</div>
+            <div className="element-tag">Ogień // Fire</div>
+        </div>
+
+        <!-- 06 VIRGO - EARTH -->
+        <div className="glyph-card">
+            <div className="badge">06</div>
+            <div className="glyph-container">
+                <svg viewBox="0 0 24 24">
+                    <path d="M4 4v12c0 2 1 3 3 3s3-1 3-3V4m0 0v12c0 2 1 3 3 3s3-1 3-3V4m0 0c0 6 3 9 5 9s2-2 2-5c0-4-5-4-5 0v12" />
+                </svg>
+            </div>
+            <div className="glyph-name">Virgo</div>
+            <div className="element-tag">Ziemia // Earth</div>
+        </div>
+
+        <!-- 07 LIBRA - AIR -->
+        <div className="glyph-card">
+            <div className="badge">07</div>
+            <div className="glyph-container">
+                <svg viewBox="0 0 24 24">
+                    <path d="M4 20h16M4 14h6c0-2 2-4 3-4s3 2 3 4h6" />
+                </svg>
+            </div>
+            <div className="glyph-name">Libra</div>
+            <div className="element-tag">Powietrze // Air</div>
+        </div>
+
+        <!-- 08 SCORPIO - WATER -->
+        <div className="glyph-card">
+            <div className="badge">08</div>
+            <div className="glyph-container">
+                <svg viewBox="0 0 24 24">
+                    <path d="M4 4v12c0 2 1 3 3 3s3-1 3-3V4m0 0v12c0 2 1 3 3 3s3-1 3-3V4m4 13l3 3 3-3M16 4v16" />
+                </svg>
+            </div>
+            <div className="glyph-name">Scorpio</div>
+            <div className="element-tag">Woda // Water</div>
+        </div>
+
+        <!-- 09 SAGITTARIUS - FIRE -->
+        <div className="glyph-card">
+            <div className="badge">09</div>
+            <div className="glyph-container">
+                <svg viewBox="0 0 24 24">
+                    <path d="M4 20L20 4M13 4h7v7M9 12l3 3" />
+                </svg>
+            </div>
+            <div className="glyph-name">Sagittarius</div>
+            <div className="element-tag">Ogień // Fire</div>
+        </div>
+
+        <!-- 10 CAPRICORN - EARTH -->
+        <div className="glyph-card">
+            <div className="badge">10</div>
+            <div className="glyph-container">
+                <svg viewBox="0 0 24 24">
+                    <path d="M4 4l6 16 4-12c2-4 8-4 8 2s-3 6-6 6" />
+                </svg>
+            </div>
+            <div className="glyph-name">Capricorn</div>
+            <div className="element-tag">Ziemia // Earth</div>
+        </div>
+
+        <!-- 11 AQUARIUS - AIR -->
+        <div className="glyph-card">
+            <div className="badge">11</div>
+            <div className="glyph-container">
+                <svg viewBox="0 0 24 24">
+                    <path d="M2 9l4-4 4 4 4-4 4 4 4-4M2 17l4-4 4 4 4-4 4 4 4-4" />
+                </svg>
+            </div>
+            <div className="glyph-name">Aquarius</div>
+            <div className="element-tag">Powietrze // Air</div>
+        </div>
+
+        <!-- 12 PISCES - WATER -->
+        <div className="glyph-card">
+            <div className="badge">12</div>
+            <div className="glyph-container">
+                <svg viewBox="0 0 24 24">
+                    <path d="M5 3c6 6 6 12 0 18M19 3c-6 6-6 12 0 18M3 12h18" />
+                </svg>
+            </div>
+            <div className="glyph-name">Pisces</div>
+            <div className="element-tag">Woda // Water</div>
+        </div>
+    </div>
+
+    <div className="footer">
+        Ad Astra — Canonical Gold Glyph Signature V3 // 2026
+    </div>
+
+</body>
+</html>

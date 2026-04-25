@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
-import { MapPin, Clock, CalendarDays } from 'lucide-react';
+import { MapPin, Clock, CalendarDays, Settings } from 'lucide-react';
 
 export default function IntakeEngine({ onSubmit }) {
   const formRef = useRef(null);
@@ -28,6 +28,7 @@ export default function IntakeEngine({ onSubmit }) {
       date: fd.get('date'),
       time: fd.get('time'),
       location: fd.get('location'),
+      houseSystem: fd.get('houseSystem'),
     };
 
     gsap.to('.hero-content', {
@@ -120,6 +121,21 @@ export default function IntakeEngine({ onSubmit }) {
               <input type="text" name="location" required placeholder="Miasto, Kraj..." className="astra-input pr-10" defaultValue="Żyrardów" />
               <MapPin size={14} className="absolute right-4 top-1/2 -translate-y-1/2 text-[#8C8883] opacity-60 pointer-events-none" />
             </div>
+          </div>
+
+          <div className="mb-8">
+            <label className="flex items-center gap-2 mb-2 text-xs font-sans font-bold tracking-widest uppercase text-[#1F2226]">
+              <Settings size={12} className="text-[#8C8883]" /> System Domów
+            </label>
+            <select name="houseSystem" className="astra-input bg-white appearance-none cursor-pointer">
+              <option value="P">Placidus (Standard)</option>
+              <option value="K">Koch</option>
+              <option value="W">Whole Sign (Całe Znaki)</option>
+              <option value="E">Equal (Równe Domy)</option>
+              <option value="R">Regiomontanus</option>
+              <option value="C">Campanus</option>
+              <option value="O">Porphyrius</option>
+            </select>
           </div>
 
           <button type="submit"

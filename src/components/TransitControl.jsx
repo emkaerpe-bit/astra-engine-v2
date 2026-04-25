@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Calendar, MapPin, Activity, Zap, Play, ChevronDown, ChevronUp, ExternalLink } from 'lucide-react';
 
-const TransitControl = ({ onCalculate, isActive, onToggle, onOpenLab }) => {
+const TransitControl = ({ onCalculate, isActive, onToggle, onOpenLab, showTimeMachine, onToggleTimeMachine }) => {
   const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
   const [location, setLocation] = useState('');
   const [loading, setLoading] = useState(false);
@@ -17,7 +17,7 @@ const TransitControl = ({ onCalculate, isActive, onToggle, onOpenLab }) => {
   };
 
   return (
-    <div className="w-full bg-[#FBF7F1] border border-[#C9BEB1] rounded-xl overflow-hidden shadow-sm mt-4 transition-all duration-300">
+    <div className="w-[320px] bg-[#FBF7F1] border border-[#C9BEB1] rounded-xl overflow-hidden shadow-sm transition-all duration-300">
       <button 
         onClick={() => setIsOpen(!isOpen)}
         className="w-full px-4 py-3 bg-[#E6DDD2] flex items-center justify-between border-b border-[#C9BEB1]/50 hover:bg-[#DDD1C3] transition-colors"

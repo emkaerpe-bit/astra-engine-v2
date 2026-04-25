@@ -1,51 +1,17 @@
 import React from 'react';
 import { PlanetGlyph } from './Glyphs';
 import { t } from '../utils/astroTranslations';
+import { calculateAspect } from '../utils/aspectEngine';
 
 const TriangularAspectGrid = ({ planets, title, colorClass = "text-[#1F2226]", onHover, onLeave }) => {
   if (!planets) return null;
 
-  // Standard set of planets for the grid (Sun to Pluto + Nodes + Chiron + AC/MC)
-  const gridPlanets = planets.slice(0, 13); 
+  // Standard set of planets for the grid (Sun to Chiron + Nodes + Lilith)
+  const gridPlanets = planets; 
 
   const getAspect = (p1, p2) => {
-    if (!p1 || !p2 || !p1.longitude || !p2.longitude || p1.key === p2.key) return null;
-    const DEFS = [
-      { name: 'Koniunkcja', symbol: '☌', angle: 0, orb: 8, color: 'text-orange-500' },
-      { name: 'Sekstyl', symbol: '⚹', angle: 60, orb: 6, color: 'text-blue-600' },
-      { name: 'Kwadratura', symbol: '□', angle: 90, orb: 7, color: 'text-red-600' },
-      { name: 'Trygon', symbol: '△', angle: 120, orb: 8, color: 'text-green-600' },
-      { name: 'Opozycja', symbol: '☍', angle: 180, orb: 8, color: 'text-purple-600' },
-      { name: 'Kwinkunks', symbol: 'ℼ', angle: 150, orb: 2, color: 'text-gray-500' },
-      { name: 'Półkwadratura', symbol: '∠', angle: 45, orb: 2, color: 'text-gray-400' },
-    ];
-
-    let diff = Math.abs(p1.longitude - p2.longitude);
-    if (diff > 180) diff = 360 - diff;
-
-    for (const asp of DEFS) {
-      const orbDiff = diff - asp.angle;
-      if (Math.abs(orbDiff) <= asp.orb) {
-        // Calculate applying vs separating
-        const v1 = p1.speed || 0;
-        const v2 = p2.speed || 0;
-        const relSpeed = v1 - v2;
-        
-        let dist = p2.longitude - p1.longitude;
-        if (dist > 180) dist -= 360;
-        if (dist < -180) dist += 360;
-        
-        const signedOrb = dist - (dist > 0 ? asp.angle : -asp.angle);
-        const isApplying = relSpeed * signedOrb < 0;
-
-        return { 
-          ...asp, 
-          orb: Math.abs(orbDiff), 
-          isApplying 
-        };
-      }
-    }
-    return null;
+    if (p1.key === p2.key) return null;
+    return calculateAspect(p1, p2);
   };
 
   return (

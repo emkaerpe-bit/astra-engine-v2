@@ -1,11 +1,31 @@
 import React from 'react';
-import { Shield, Activity, Compass, Wind, Award, Zap } from 'lucide-react';
+import { Shield, Activity, Compass, Wind, Award, Zap, RotateCcw } from 'lucide-react';
 import { PlanetGlyph, ZodiacGlyph } from './Glyphs';
 import { t } from '../utils/astroTranslations';
 import { getDignity } from '../utils/astroDignities';
 
-const EphemerisTable = ({ planets, houses }) => {
+const EphemerisTable = ({ planets, houses, onHouseSystemChange }) => {
   if (!planets || !houses) return null;
+
+  const systems = [
+    { code: 'P', name: 'Placidus' },
+    { code: 'K', name: 'Koch' },
+    { code: 'W', name: 'Whole Sign' },
+    { code: 'E', name: 'Equal' },
+    { code: 'R', name: 'Regiomontanus' },
+    { code: 'C', name: 'Campanus' },
+    { code: 'M', name: 'Morinus' },
+    { code: 'O', name: 'Porphyrius' },
+    { code: 'T', name: 'Topocentric' }
+  ];
+
+  const currentSystem = systems.find(s => s.code === houses.code) || systems[0];
+
+  const handleNextSystem = () => {
+    const idx = systems.findIndex(s => s.code === houses.code);
+    const next = systems[(idx + 1) % systems.length];
+    onHouseSystemChange?.(next.code);
+  };
 
   return (
     <div className="space-y-12 mt-12 animate-fade-in font-sans">
@@ -64,7 +84,7 @@ const EphemerisTable = ({ planets, houses }) => {
                     <td className="px-6 py-4">
                       <div className="flex flex-col">
                         <span className="font-mono text-xs text-[#1F2226] font-bold tracking-tight">
-                          {p.degreeInSign} {t(p.sign)}
+                          {p.degreeInSign.split(' ').slice(0, 2).join(' ')} {t(p.sign)}
                         </span>
                         {p.isRetrograde && (
                           <span className="inline-flex items-center gap-1 text-[8px] font-bold text-red-600 font-mono tracking-widest uppercase">
@@ -74,16 +94,16 @@ const EphemerisTable = ({ planets, houses }) => {
                       </div>
                     </td>
                     <td className="px-6 py-4 font-mono text-[10px] text-[#8C8883] font-bold">
-                      {p.latFormatted || '0° 00\' 00"'}
+                      {p.latFormatted || "0° 00'"}
                     </td>
                     <td className="px-6 py-4 font-mono text-[10px] text-[#8C8883] font-bold">
-                      {p.declFormatted || '0° 00\' 00"'}
+                      {p.declFormatted || "0° 00'"}
                     </td>
                     <td className="px-6 py-4">
                       <div className="flex items-center gap-2">
                         <Wind size={10} className={p.speed < 0 ? 'text-red-500' : 'text-green-600'} />
                         <span className={`font-mono text-[10px] font-bold ${p.speed < 0 ? 'text-red-600' : 'text-[#1F2226]'}`}>
-                          {p.speed.toFixed(4)}°/d
+                          {p.speed?.toFixed(4) || '0.0000'}°/d
                         </span>
                       </div>
                     </td>
@@ -111,14 +131,22 @@ const EphemerisTable = ({ planets, houses }) => {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        {/* 2. HOUSE CUSPS [PLACIDUS ENGINE] */}
+        {/* 2. HOUSE CUSPS [INTERACTIVE ENGINE] */}
         <div className="bg-[#FBF7F1] border border-[#C9BEB1] rounded-2xl overflow-hidden shadow-sm">
           <div className="px-6 py-4 border-b border-[#C9BEB1]/50 bg-[#E6DDD2] flex justify-between items-center">
             <div className="flex items-center gap-2">
               <Compass size={16} className="text-[#1F2226]" />
               <h3 className="font-serif italic text-xl text-[#1F2226] font-bold">Wierzchołki Domów</h3>
             </div>
-            <span className="text-[9px] uppercase tracking-widest text-[#8C8883] font-bold">System Placidusa</span>
+            <button 
+              onClick={handleNextSystem}
+              className="group flex items-center gap-2 px-3 py-1 rounded-full bg-[#1F2226]/5 border border-[#C9BEB1]/30 hover:bg-[#1F2226] hover:text-[#D4AF37] transition-all duration-300"
+            >
+              <span className="text-[9px] uppercase tracking-widest font-black transition-colors">
+                System {currentSystem.name}
+              </span>
+              <RotateCcw size={10} className="group-hover:rotate-180 transition-transform duration-500" />
+            </button>
           </div>
           <div className="grid grid-cols-2 p-2">
             {houses.cusps.map((c) => (
@@ -129,7 +157,7 @@ const EphemerisTable = ({ planets, houses }) => {
                 </div>
                 <div className="flex items-center gap-2 font-mono text-[10px] text-[#1F2226]/70 font-bold bg-white px-2 py-1 rounded border border-[#C9BEB1]/30 shadow-sm">
                   <ZodiacGlyph name={c.sign.toLowerCase()} size={14} className="w-4 h-4 text-[#D4AF37]" />
-                  <span>{c.degreeInSign}</span>
+                  <span>{c.degreeInSign.split(' ').slice(0, 2).join(' ')}</span>
                 </div>
               </div>
             ))}

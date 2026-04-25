@@ -6,6 +6,9 @@ import { t } from '../utils/astroTranslations';
 import { getDignity } from '../utils/astroDignities';
 import TransitNatalAspectGrid from './TransitNatalAspectGrid';
 import TriangularAspectGrid from './TriangularAspectGrid';
+import TimeMachine from './TimeMachine';
+import * as luxon from 'luxon';
+const { DateTime } = luxon;
 
 const getHouse = (lng, cusps) => {
   if (!cusps || cusps.length < 12) return '?';
@@ -21,20 +24,23 @@ const getHouse = (lng, cusps) => {
   return 1;
 };
 
-const TransitLaboratory = ({ chartData, transitData, onClose, activePlanets, activeAspects }) => {
+const TransitLaboratory = ({ chartData, transitData, onClose, activePlanets, activeAspects, onTimeChange, showTimeMachine, onToggleTimeMachine }) => {
   const [tooltip, setTooltip] = useState({ show: false, text: '', x: 0, y: 0 });
 
   if (!chartData || !transitData) return null;
 
   const natalHouseCusps = chartData?.houses?.cusps?.map(c => c.longitude);
 
-  const handleHover = (e, text) => {
-    setTooltip({
-      show: true,
-      text,
-      x: e.clientX + 15,
-      y: e.clientY + 15
-    });
+  const handleHover = (e, content) => {
+    const tooltipWidth = 220;
+    const tooltipHeight = 100;
+    let x = e.clientX + 15;
+    let y = e.clientY + 15;
+
+    if (x + tooltipWidth > window.innerWidth) x = e.clientX - tooltipWidth - 10;
+    if (y + tooltipHeight > window.innerHeight) y = e.clientY - tooltipHeight - 10;
+
+    setTooltip({ show: true, text: content, x, y });
   };
 
   const handleLeave = () => {
@@ -70,9 +76,24 @@ const TransitLaboratory = ({ chartData, transitData, onClose, activePlanets, act
           </div>
         </div>
         <div className="flex items-center gap-4">
-          <div className="flex items-center gap-2 px-3 py-0.5 bg-white/5 border border-white/10 rounded-full">
-             <ShieldCheck size={12} className="text-[#D4AF37]" />
-             <span className="text-[8px] font-mono text-white/80 font-bold uppercase tracking-widest">Precision J2000</span>
+          <div className="flex items-center gap-4 px-4 py-1.5 bg-white/5 border border-white/10 rounded-full">
+            <div className="flex items-center gap-2 mr-2 border-r border-white/10 pr-4">
+              <span className="text-[8px] font-mono text-[#D4AF37] font-bold uppercase tracking-widest">Time Machine</span>
+              <button 
+                onClick={(e) => { e.preventDefault(); onToggleTimeMachine?.(); }}
+                className={`w-8 h-4 rounded-full relative transition-all duration-300 ${
+                  showTimeMachine ? 'bg-[#D4AF37]' : 'bg-white/10'
+                }`}
+              >
+                <div className={`absolute top-0.5 w-3 h-3 bg-[#1F2226] rounded-full transition-all duration-300 ${
+                  showTimeMachine ? 'left-4.5' : 'left-0.5'
+                }`} />
+              </button>
+            </div>
+            <div className="flex items-center gap-2">
+              <ShieldCheck size={12} className="text-[#D4AF37]" />
+              <span className="text-[8px] font-mono text-white/80 font-bold uppercase tracking-widest">Precision J2000</span>
+            </div>
           </div>
           <button 
             onClick={onClose}
@@ -84,8 +105,20 @@ const TransitLaboratory = ({ chartData, transitData, onClose, activePlanets, act
       </header>
 
       {/* 2. MAIN SCROLLABLE CONTENT */}
-      <main className="flex-1 overflow-y-auto p-8 custom-scrollbar">
-        <div className="max-w-[1400px] mx-auto space-y-16 pb-20">
+      <main className="flex-1 overflow-y-auto custom-scrollbar bg-[#F1E9DE]">
+        
+        {/* TEMPORAL CONTROL BAR (Integrated) */}
+        {showTimeMachine && (
+          <div className="w-full bg-[#1F2226] border-b border-[#D4AF37]/20 py-6 px-8 flex justify-center animate-in slide-in-from-top duration-500">
+            <TimeMachine 
+              baseDate={chartData?.input?.date || DateTime.now().toISO()}
+              isActive={true}
+              onDateChange={onTimeChange}
+            />
+          </div>
+        )}
+
+        <div className="max-w-[1400px] mx-auto p-8 space-y-16 pb-20">
           
           {/* SECTION A: THE BI-WHEEL (CENTERPIECE) */}
           <div className="flex flex-col items-center">
@@ -100,7 +133,7 @@ const TransitLaboratory = ({ chartData, transitData, onClose, activePlanets, act
             </div>
             <div className="mt-8 flex items-center gap-2 text-[#166534] bg-[#166534]/5 border border-[#166534]/20 px-4 py-1.5 rounded-full">
               <Activity size={12} />
-              <p className="text-[8px] font-bold uppercase tracking-widest italic">Astra Engine Active</p>
+              <p className="text-[8px] font-bold uppercase tracking-widest italic">Ad Astra Active</p>
             </div>
           </div>
 
@@ -143,11 +176,11 @@ const TransitLaboratory = ({ chartData, transitData, onClose, activePlanets, act
                                  <td className="px-4 py-1 text-[#1F2226]">
                                    <div className="flex items-center gap-1">
                                      <ZodiacGlyph name={p.sign.toLowerCase()} className="w-2.5 h-2.5 text-[#1F2226]" />
-                                     <span className="font-bold">{p.degreeInSign}</span>
+                                     <span className="font-bold">{p.degreeInSign.split(' ').slice(0, 2).join(' ')}</span>
                                    </div>
                                  </td>
                                  <td className="px-4 py-1 text-center text-[#1F2226] font-bold text-sm">{p.house}</td>
-                                 <td className="px-4 py-1 text-[#1F2226]">{p.speed.toFixed(3)}°</td>
+                                 <td className="px-4 py-1 text-[#1F2226]">{p.speed?.toFixed(3) || '0.000'}°</td>
                                  <td className={`px-4 py-1 border-l border-[#C9BEB1]/30 text-[8px] font-bold uppercase tracking-tight ${
                                    dignity.score > 0 ? 'text-green-700' : 
                                    dignity.score < 0 ? 'text-red-700' : 
@@ -208,14 +241,14 @@ const TransitLaboratory = ({ chartData, transitData, onClose, activePlanets, act
                                <td className="px-4 py-1 text-[#166534]">
                                  <div className="flex items-center gap-1">
                                    <ZodiacGlyph name={p.sign.toLowerCase()} className="w-2.5 h-2.5 text-[#166534]" />
-                                   <span className="font-bold">{p.degreeInSign}</span>
+                                   <span className="font-bold">{p.degreeInSign.split(' ').slice(0, 2).join(' ')}</span>
                                    {p.speed < 0 && <span className="text-red-600 font-bold ml-1">R</span>}
                                  </div>
                                </td>
                                <td className="px-4 py-1 text-center text-[#1F2226] font-bold text-sm">
                                   {getHouse(p.longitude, natalHouseCusps)}
                                </td>
-                               <td className="px-4 py-1 text-[#1F2226]">{p.speed.toFixed(3)}°</td>
+                               <td className="px-4 py-1 text-[#1F2226]">{p.speed?.toFixed(3) || '0.000'}°</td>
                                <td className="px-4 py-1 text-[#8C8883] font-bold text-[10px]">{p.declFormatted}</td>
                              </tr>
                            ))}
@@ -254,6 +287,7 @@ const TransitLaboratory = ({ chartData, transitData, onClose, activePlanets, act
           </div>
         </div>
       </main>
+
     </div>
   );
 };

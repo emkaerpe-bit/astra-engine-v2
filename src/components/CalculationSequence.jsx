@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 
 const LOGS = [
-  '[sys] Inicjalizacja Astra Engine v2.7...',
+  '[sys] Inicjalizacja Ad Astra v3.0...',
   '[sys] Ładowanie danych efemerydalnych J2000.0...',
   '[ast] Wyrównywanie współrzędnych zodiaku...',
   '[sys] Obliczanie stopnia Ascendentu — 14°22\'...',

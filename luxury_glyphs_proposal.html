@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Ad Astra — Projekt Autorskich Glifów</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@200;400&family=Playfair+Display:italic,wght@0,700;1,700&display=swap');
+
+        body {
+            background: #1F2226;
+            color: #F1E9DE;
+            font-family: 'Outfit', sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 60px 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .header h1 {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 3rem;
+            margin: 0;
+            letter-spacing: -0.02em;
+            background: linear-gradient(to right, #D4AF37, #FBF7F1, #D4AF37);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header p {
+            font-size: 0.9rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: #8C8883;
+            margin-top: 10px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            max-width: 1000px;
+        }
+
+        .glyph-card {
+            background: rgba(251, 247, 241, 0.03);
+            border: 1px solid rgba(201, 190, 177, 0.1);
+            padding: 40px;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glyph-card:hover {
+            background: rgba(251, 247, 241, 0.05);
+            border-color: #D4AF37;
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .glyph-container {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.2));
+        }
+
+        .glyph-card svg {
+            width: 100%;
+            height: 100%;
+            fill: none;
+            stroke: #D4AF37;
+            stroke-width: 1.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .glyph-name {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: #8C8883;
+            font-weight: bold;
+        }
+
+        .badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 8px;
+            background: #D4AF37;
+            color: #1F2226;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .footer {
+            margin-top: 100px;
+            text-align: center;
+            color: #8C8883;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div className="header">
+        <h1>Ad Astra</h1>
+        <p>Custom Glyph Architecture v1.0</p>
+    </div>
+
+    <div className="grid">
+        <!-- ARIES -->
+        <div className="glyph-card">
+            <span className="badge">FIRE</span>
+            <div className="glyph-container">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12,21 L12,9 C12,5 9,4 7,4 C5,4 2,6 2,9 M12,9 C12,5 15,4 17,4 C19,4 22,6 22,9" />
+                    <circle cx="12" cy="9" r="0.5" fill="#D4AF37" />
+                </svg>
+            </div>
+            <div className="glyph-name">Baran</div>
+        </div>
+
+        <!-- TAURUS -->
+        <div className="glyph-card">
+            <span className="badge">EARTH</span>
+            <div className="glyph-container">
+                <svg viewBox="0 0 24 24">
+                    <circle cx="12" cy="14" r="6" />
+                    <path d="M4,4 C4,10 20,10 20,4" />
+                    <circle cx="12" cy="8" r="0.5" fill="#D4AF37" />
+                </svg>
+            </div>
+            <div className="glyph-name">Byk</div>
+        </div>
+
+        <!-- GEMINI -->
+        <div className="glyph-card">
+            <span className="badge">AIR</span>
+            <div className="glyph-container">
+                <svg viewBox="0 0 24 24">
+                    <path d="M5,4 L19,4 M5,20 L19,20 M9,4 L9,20 M15,4 L15,20" />
+                    <circle cx="12" cy="12" r="1.5" stroke-dasharray="1,2" />
+                </svg>
+            </div>
+            <div className="glyph-name">Bliźnięta</div>
+        </div>
+
+        <!-- CANCER -->
+        <div className="glyph-card">
+            <span className="badge">WATER</span>
+            <div className="glyph-container">
+                <svg viewBox="0 0 24 24">
+                    <circle cx="7" cy="9" r="3" />
+                    <path d="M7,6 C14,6 18,10 18,10 M17,15 C10,15 6,11 6,11" />
+                    <circle cx="17" cy="15" r="3" />
+                </svg>
+            </div>
+            <div className="glyph-name">Rak</div>
+        </div>
+
+        <!-- LEO -->
+        <div className="glyph-card">
+            <span className="badge">FIRE</span>
+            <div className="glyph-container">
+                <svg viewBox="0 0 24 24">
+                    <circle cx="6" cy="16" r="3" />
+                    <path d="M9,16 C9,8 14,4 18,4 C22,4 22,10 18,10 C14,10 13,18 20,18" />
+                </svg>
+            </div>
+            <div className="glyph-name">Lew</div>
+        </div>
+
+        <!-- VIRGO -->
+        <div className="glyph-card">
+            <span className="badge">EARTH</span>
+            <div className="glyph-container">
+                <svg viewBox="0 0 24 24">
+                    <path d="M4,4 Q4,20 8,20 Q12,20 12,4 M12,4 Q12,20 16,20 Q20,20 20,4 M20,12 L22,22" />
+                    <circle cx="12" cy="4" r="0.5" fill="#D4AF37" />
+                </svg>
+            </div>
+            <div className="glyph-name">Panna</div>
+        </div>
+
+        <!-- LIBRA -->
+        <div className="glyph-card">
+            <span className="badge">AIR</span>
+            <div className="glyph-container">
+                <svg viewBox="0 0 24 24">
+                    <path d="M4,20 L20,20 M4,14 L7,14 C7,14 7,8 12,8 C17,8 17,14 20,14" />
+                    <line x1="12" y1="8" x2="12" y2="4" stroke-dasharray="1,2" />
+                </svg>
+            </div>
+            <div className="glyph-name">Waga</div>
+        </div>
+
+        <!-- SCORPIO -->
+        <div className="glyph-card">
+            <span className="badge">WATER</span>
+            <div className="glyph-container">
+                <svg viewBox="0 0 24 24">
+                    <path d="M4,4 Q4,16 8,16 Q12,16 12,4 M12,4 Q12,16 16,16 Q20,16 20,4 M20,12 L22,18 L18,18" />
+                </svg>
+            </div>
+            <div className="glyph-name">Skorpion</div>
+        </div>
+
+        <!-- SAGITTARIUS -->
+        <div className="glyph-card">
+            <span className="badge">FIRE</span>
+            <div className="glyph-container">
+                <svg viewBox="0 0 24 24">
+                    <path d="M4,20 L20,4 M14,4 L20,4 L20,10 M8,12 L12,16" />
+                </svg>
+            </div>
+            <div className="glyph-name">Strzelec</div>
+        </div>
+
+        <!-- CAPRICORN -->
+        <div className="glyph-card">
+            <span className="badge">EARTH</span>
+            <div className="glyph-container">
+                <svg viewBox="0 0 24 24">
+                    <path d="M4,4 L10,20 L16,8 C16,8 22,2 22,10 C22,18 16,18 16,18" />
+                </svg>
+            </div>
+            <div className="glyph-name">Koziorożec</div>
+        </div>
+
+        <!-- AQUARIUS -->
+        <div className="glyph-card">
+            <span className="badge">AIR</span>
+            <div className="glyph-container">
+                <svg viewBox="0 0 24 24">
+                    <path d="M4,8 L8,4 L12,8 L16,4 L20,8 M4,16 L8,12 L12,16 L16,12 L20,16" />
+                </svg>
+            </div>
+            <div className="glyph-name">Wodnik</div>
+        </div>
+
+        <!-- PISCES -->
+        <div className="glyph-card">
+            <span className="badge">WATER</span>
+            <div className="glyph-container">
+                <svg viewBox="0 0 24 24">
+                    <path d="M6,4 Q12,12 6,20 M18,4 Q12,12 18,20 M4,12 L20,12" />
+                    <circle cx="12" cy="12" r="1" fill="#D4AF37" />
+                </svg>
+            </div>
+            <div className="glyph-name">Ryby</div>
+        </div>
+    </div>
+
+    <div className="footer">
+        Projekt stworzony dla platformy <strong>Ad Astra</strong> | 2026
+    </div>
+
+</body>
+</html>
