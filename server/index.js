@@ -118,7 +118,7 @@ app.post('/api/transits', async (req, res) => {
     }
 
     if (!date) return res.status(400).json({ error: "Date is required" }); const [year, month, day] = date.split("-").map(Number);
-    const [hour, minute] = (time || "12:00").split("-").map(Number);
+    const [hour, minute] = (time || "12:00").split(":").map(Number);
 
     const transits = await calculateTransits({
       year, month, day, hour, minute,

@@ -12,6 +12,9 @@
     "lint": "eslint .",
     "preview": "vite preview"
   },
+  "engines": {
+    "node": ">=20.0.0"
+  },
   "dependencies": {
     "@stripe/react-stripe-js": "^6.2.0",
     "@stripe/stripe-js": "^9.3.0",

@@ -8,7 +8,11 @@ import sweph from 'sweph';
 import { DateTime } from 'luxon';
 import tzlookup from 'tz-lookup';
 
-sweph.set_ephe_path('./server/ephe');
+import path from 'path';
+
+const ephePath = path.join(process.cwd(), 'server', 'ephe');
+sweph.set_ephe_path(ephePath);
+console.log(`[ASTRA] Ephemeris Path Set: ${ephePath}`);
 
 const PLANET_COLORS = {
   sun: '#FFD700', moon: '#C0C0C0', mercury: '#FFA500', venus: '#4CAF50', mars: '#FF4136',
