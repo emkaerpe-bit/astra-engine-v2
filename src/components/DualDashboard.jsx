@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import ZodiacWheel from './ZodiacWheel';
 import { ArrowLeft, Heart, Zap, Shield, Moon, GitMerge, Users, Star, Loader2 } from 'lucide-react';
 
-const API_URL = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://localhost:3005' : '');
+const API_URL = import.meta.env.VITE_API_URL || 
+  (window.location.hostname === 'localhost' ? 'http://localhost:3005' : '');
 
 export default function DualDashboard({ 
   chartData, 

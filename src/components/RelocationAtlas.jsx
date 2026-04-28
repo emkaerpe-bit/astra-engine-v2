@@ -127,11 +127,10 @@ const RelocationAtlas = ({ chartData }) => {
   };
 
   const handleRelocation = async () => {
-    if (!selectedCity || !originalData) return;
+    if (!selectedCity || !originalData || !originalData.input) return;
     setIsAnalyzing(true);
     
     try {
-      // Ensure we use the raw input values if available
       const birthDate = originalData.input.date;
       const birthTime = originalData.input.time;
 
