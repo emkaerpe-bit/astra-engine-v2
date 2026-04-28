@@ -1,0 +1,1802 @@
+[
+  {
+    "id": 1,
+    "symbol": "Człowiek z sierpem w prawej i procą w lewej ręce.",
+    "interpretation": "Osoba pracowita, ale ze skłonnością do awantur."
+  },
+  {
+    "id": 2,
+    "symbol": "Człowiek z głową psa, grożący wyciągniętą prawą pięścią.",
+    "interpretation": "Charakter zawistny i agresywny."
+  },
+  {
+    "id": 3,
+    "symbol": "Mężczyzna z wyciągniętą i otwartą prawą ręką, a lewą podparty w pasie.",
+    "interpretation": "Charakter miłujący zgodę."
+  },
+  {
+    "id": 4,
+    "symbol": "Mężczyzna o zjeżonych włosach, niosący w prawej krogulec, a w lewej bicz.",
+    "interpretation": "Osoba czynu, trwoniąca, rzadko wzbogaca się sama i łatwo traci to, co zdobyła."
+  },
+  {
+    "id": 5,
+    "symbol": "Dwóch mężczyzn: jeden łupie toporem drzewo na opał, drugi trzyma w prawej ręce berło.",
+    "interpretation": "Pracowicie osiągnięte wyniesienie, szczęśliwe ojcostwo."
+  },
+  {
+    "id": 6,
+    "symbol": "Król w koronie na głowie, z kulą w prawej i berłem w lewej ręce.",
+    "interpretation": ". Wywyższenie, wyniesienie, prestiż."
+  },
+  {
+    "id": 7,
+    "symbol": "Mężczyzna w zbroi trzymający strzałę w łuku.",
+    "interpretation": "Charakter przezorny, ostrożny, na straży przeciwko swoim wrogom."
+  },
+  {
+    "id": 8,
+    "symbol": "Mężczyzna w hełmie z procą w prawej ręce.",
+    "interpretation": "Charakter skłonny do polemiki, łatwo dający się doprowadzić do użycia niebezpiecznej przemocy."
+  },
+  {
+    "id": 9,
+    "symbol": "Mężczyzna z odkrytą głową z mieczem w lewej ręce.",
+    "interpretation": "Charakter zasobny w bezużyteczne słowa, duch pomieszany z powodu miłości własnej."
+  },
+  {
+    "id": 10,
+    "symbol": "Mężczyzna przeszywający niedźwiedzia włócznią.",
+    "interpretation": "Duch wojowniczy."
+  },
+  {
+    "id": 11,
+    "symbol": "Stojąca kobieta, trzymająca klucz w prawej dłoni.",
+    "interpretation": "Charakter gościnny, szczęście w skrytych miłościach."
+  },
+  {
+    "id": 12,
+    "symbol": "Orzeł z rozpostartymi skrzydłami krążący wokół swojego gniazda.",
+    "interpretation": "Przedwczesne ambicje."
+  },
+  {
+    "id": 13,
+    "symbol": "Mężczyzna walczący z baranem, którego trzyma za rogi.",
+    "interpretation": "Sława zdobyta przez pracę i walkę."
+  },
+  {
+    "id": 14,
+    "symbol": "Stojący mężczyzna z rękami w kajdanach.",
+    "interpretation": "Groźba wielu niewoli."
+  },
+  {
+    "id": 15,
+    "symbol": "Mężczyzna w zbroi, z odkrytą głową, ramiona rozpostarte i wyciągnięte.",
+    "interpretation": "Charakter fałszywy, ze skłonnościami do zagarniania cudzego dobra."
+  },
+  {
+    "id": 16,
+    "symbol": "Mężczyzna ˇwylewający wodę z urny.",
+    "interpretation": "Charakter prosty, miłość do wsi."
+  },
+  {
+    "id": 17,
+    "symbol": "Mężczyzna bogato ubrany, stojący i nieruchomy.",
+    "interpretation": "Charakter zniewieściały, zamiłowanie do luksusu i lenistwa."
+  },
+  {
+    "id": 18,
+    "symbol": "Kobieta siedząca na tronie z uniesioną prawą ręką.",
+    "interpretation": "Charakter przyjazny pokojowi i porozumieniu."
+  },
+  {
+    "id": 19,
+    "symbol": "Mężczyzna stojący z wyciągniętymi rękami w stronę kufra, z którego wylewa się złoto.",
+    "interpretation": "Charakter zachłanny, ze skłonnościami do zawłaszczania cudzego dobra."
+  },
+  {
+    "id": 20,
+    "symbol": "Mężczyzna w hełmie dosiadający strusia ciągnie konia za uzdę.",
+    "interpretation": "Instynkty złośliwie przebiegłe."
+  },
+  {
+    "id": 21,
+    "symbol": "Pies siedzący na przeciwko lwa, również siedzącego.",
+    "interpretation": "Charakter hojny, serce ufne i wierne."
+  },
+  {
+    "id": 22,
+    "symbol": "Niedźwiedź gryzący belkę.",
+    "interpretation": "Duch choleryczny, dyskutant każdej racji."
+  },
+  {
+    "id": 23,
+    "symbol": "Trzy węże walczące z trzema innymi.",
+    "interpretation": "Wielu rozwścieczonych wrogów."
+  },
+  {
+    "id": 24,
+    "symbol": "Naga kobieta, przyodziana jedynie w pas, z wyciągniętą prawą ręką.",
+    "interpretation": "Charakter, który zdominuje zamiłowanie do rozkoszy."
+  },
+  {
+    "id": 25,
+    "symbol": "Mężczyzna ze zjeżonymi włosami dosiadający barana.",
+    "interpretation": "Charakter dominujący, zderzający ze wszystkim."
+  },
+  {
+    "id": 26,
+    "symbol": "Słońce rzucające swoje promienie na inne słońce.",
+    "interpretation": "Dostąpienie do wzniosłej fortuny."
+  },
+  {
+    "id": 27,
+    "symbol": "Duży smok rozciągnięty na ziemi.",
+    "interpretation": "Wielkie szczęście, które się spełni jedynie w wieku podeszłym."
+  },
+  {
+    "id": 28,
+    "symbol": "Stojąca kobieta bogato ubrana.",
+    "interpretation": "Skłonność do przyjemności."
+  },
+  {
+    "id": 29,
+    "symbol": "Mężczyzna trzymający piłę obiema rękami.",
+    "interpretation": "Życie pracowite i trudne."
+  },
+  {
+    "id": 30,
+    "symbol": "Kobieta ciągnąca za sobą konia w uprzęży.",
+    "interpretation": "Charakter ze skłonnością do dominacji."
+  },
+  {
+    "id": 31,
+    "symbol": "Atleta powalający byka za rogi.",
+    "interpretation": "Wielka walka i zwycięstwo dzięki umiejętności połączonej z siłą."
+  },
+  {
+    "id": 32,
+    "symbol": "Kobieta wisząca na końskim ogonie.",
+    "interpretation": "Ospałość, lenistwo, które stanie się bezużyteczne dla właściciela jak i dla innych."
+  },
+  {
+    "id": 33,
+    "symbol": "Stara kobieta częściowo zasłonięta/zawoalowana.",
+    "interpretation": "Dla kobiet starość upodlona przez niedorzeczne namiętności."
+  },
+  {
+    "id": 34,
+    "symbol": "Kobieta trzymająca bat w prawej ręce.",
+    "interpretation": "Charakter porywczy."
+  },
+  {
+    "id": 35,
+    "symbol": "Byk siedzący koło swojego żłobu.",
+    "interpretation": "Charakter pokojowy."
+  },
+  {
+    "id": 36,
+    "symbol": "Mężczyzna z trzema głowami wyciągający prawą rękę.",
+    "interpretation": "Sława nabyta poprzez naukę."
+  },
+  {
+    "id": 37,
+    "symbol": "Piękna stojąca kobieta.",
+    "interpretation": "Duma i próżność."
+  },
+  {
+    "id": 38,
+    "symbol": "Smutna kobieta siedząca na stercie kamieni.",
+    "interpretation": "Upadek w podłość i utrata prestiżu."
+  },
+  {
+    "id": 39,
+    "symbol": "Mężczyzna poganiający przed sobą kilka owiec i kóz.",
+    "interpretation": "Nabycie dziedzicznego majątku w przedsiębiorstwie rolnym, szczególnie związanego z handlem trzodą mniejszą."
+  },
+  {
+    "id": 40,
+    "symbol": "Pies bawiący się pomiędzy dwiema kobietami.",
+    "interpretation": "Lenistwo, strata czasu, zamiłowanie do przyjemności zmysłowych."
+  },
+  {
+    "id": 41,
+    "symbol": "Siedzący kruk.",
+    "interpretation": "Chciwość, skąpstwo."
+  },
+  {
+    "id": 42,
+    "symbol": "Dwie kobiety ze splecionymi rękoma.",
+    "interpretation": "Życzliwość, wymiana uczuć."
+  },
+  {
+    "id": 43,
+    "symbol": "Dwie kobiety walczące ze sobą.",
+    "interpretation": "Charakter brutalny i wściekły."
+  },
+  {
+    "id": 44,
+    "symbol": "Mężczyzna trzymający laskę w połowie.",
+    "interpretation": "Wróży charakter pojednawczy."
+  },
+  {
+    "id": 45,
+    "symbol": "Siedem ibisów w szybkim locie.",
+    "interpretation": "Charakter lubiący przygody, niestały i lotny."
+  },
+  {
+    "id": 46,
+    "symbol": "Kobieta trzymająca różę ze złota i ze srebra, które skłania jedną ku drugiej.",
+    "interpretation": "Charakter obserwacyjny i refleksyjny, duch subtelny, przenikliwy, który będzie potrafił wybrać najlepsze w przyszłości."
+  },
+  {
+    "id": 47,
+    "symbol": "Byk przewiązany w połowie ciała i przywiązany do drzewa.",
+    "interpretation": "Charakter bezsilny i zagrożenie przyszłości przepełnionej zawiłościami."
+  },
+  {
+    "id": 48,
+    "symbol": "Dwa byki walczące na rogi.",
+    "interpretation": "Charakter porywczy, niebezpieczne uniesienia."
+  },
+  {
+    "id": 49,
+    "symbol": "Kobieta przelewająca wodę z jednej czary do drugiej.",
+    "interpretation": "Słodycz."
+  },
+  {
+    "id": 50,
+    "symbol": "Dwa gryzące się psy.",
+    "interpretation": "Charakter zazdrosny i wściekłość."
+  },
+  {
+    "id": 51,
+    "symbol": "Niedźwiedź oglądający się za siebie i obnażający zęby.",
+    "interpretation": "Charakter porywczy ze skłonnościami do czynienia zła."
+  },
+  {
+    "id": 52,
+    "symbol": "Trzej ludzie trzymający się za ręce.",
+    "interpretation": "Niemoc przez bezwład."
+  },
+  {
+    "id": 53,
+    "symbol": "Mężczyzna upadający na plecy.",
+    "interpretation": "Niepowodzenie lub ruina we wszystkich przedsięwzięciach."
+  },
+  {
+    "id": 54,
+    "symbol": "Zgięty mężczyzna, wspierający się na trzcinie, która się gnie.",
+    "interpretation": "Charakter słaby, nieśmiały, inteligencja chwiejna; zagrożenie niepowodzeniem."
+  },
+  {
+    "id": 55,
+    "symbol": "Stojący mężczyzna wsparty na lasce.",
+    "interpretation": "Stałość, poczucie siły, niewzruszoność."
+  },
+  {
+    "id": 56,
+    "symbol": "Mężczyzna stojący z wyciągniętą ręką.",
+    "interpretation": "Duch pokojowy."
+  },
+  {
+    "id": 57,
+    "symbol": "Pole pokryte snopkami pszenicy.",
+    "interpretation": "Nabycie dóbr."
+  },
+  {
+    "id": 58,
+    "symbol": "Kobieta ciągnąca konia za uzdę.",
+    "interpretation": "Charakter ambitny, wysiłki w dotarciu do mety, ale nieznajomość prawdziwych środków."
+  },
+  {
+    "id": 59,
+    "symbol": "Kobieta ciągnąca barana za rogi.",
+    "interpretation": "Charakter despotyczny, szczególnie dla kobiety."
+  },
+  {
+    "id": 60,
+    "symbol": "Dom bogatego architekta.",
+    "interpretation": "Wysoka inteligencja, błyskotliwe pomysły, szczęśliwa realizacja przedsięwzięć. Bliźnięta (61o-90o)"
+  },
+  {
+    "id": 61,
+    "symbol": "Dwaj ludzie trzymający się za ręce.",
+    "interpretation": "Charakter pogodny."
+  },
+  {
+    "id": 62,
+    "symbol": "Mężczyzna uzbrojony, ciągnący dwóch nagich mężczyzn.",
+    "interpretation": "Awans w sądownictwie."
+  },
+  {
+    "id": 63,
+    "symbol": "Mężczyzna grający na lirze.",
+    "interpretation": "Zamiłowanie do sztuk, zdolność do jej uprawiania ich z powodzeniem."
+  },
+  {
+    "id": 64,
+    "symbol": "Mężczyzna ściskający dłoń drugiemu człowiekowi, który się kłania.",
+    "interpretation": "Charakter życzliwy."
+  },
+  {
+    "id": 65,
+    "symbol": "Mężczyzna trzymający pas w prawej ręce i procę w lewej.",
+    "interpretation": "Szczęście i awans w zawodzie związanym z bronią."
+  },
+  {
+    "id": 66,
+    "symbol": "Mężczyzna trzymający wagę w prawej ręce.",
+    "interpretation": "Zdolność do prosperowania w biznesie."
+  },
+  {
+    "id": 67,
+    "symbol": "Dwie młode dziewczyny trzymające się za ręce.",
+    "interpretation": "Szczęście w małżeństwie."
+  },
+  {
+    "id": 68,
+    "symbol": "Kowal kujący żelazo, a obok niego bezczynna kobieta.",
+    "interpretation": "Lenistwo."
+  },
+  {
+    "id": 69,
+    "symbol": "Król siedzący na tronie i trzymający kulę w prawej, a buławę w lewej ręce.",
+    "interpretation": "Królestwo, jeśli dziecko urodzi się księciem. W innych okolicznościach życia szczęście osiągnięte bez wysiłku."
+  },
+  {
+    "id": 70,
+    "symbol": "Mężczyzna pomagający podnieść się z ziemi innemu mężczyźnie.",
+    "interpretation": "Charakter życzliwy, sympatyczny."
+  },
+  {
+    "id": 71,
+    "symbol": "Orzeł krążący nad trzema orlętami.",
+    "interpretation": "Duch niespokojny, skłonny do przesądów."
+  },
+  {
+    "id": 72,
+    "symbol": "Dwie kobiety stojące i płaczące.",
+    "interpretation": "Życie pełne niepokojów."
+  },
+  {
+    "id": 73,
+    "symbol": "Trzy kruki siedzące jeden obok drugiego.",
+    "interpretation": "Charakter zawistny i skąpy."
+  },
+  {
+    "id": 74,
+    "symbol": "Dwa lisy pożerające kury.",
+    "interpretation": "Instynkty zmysłowe i łapczywe."
+  },
+  {
+    "id": 75,
+    "symbol": "Mężczyzna z siedmioma głowami.",
+    "interpretation": "Duch pomieszany, gubiący się w sprzecznych projektach."
+  },
+  {
+    "id": 76,
+    "symbol": "Most postawiony obok rzeki.",
+    "interpretation": "Wyobraźnie pozbawiona rozsądku, bezowocna praca."
+  },
+  {
+    "id": 77,
+    "symbol": "Stojący mężczyzna bez rąk.",
+    "interpretation": "Niemoc, marność."
+  },
+  {
+    "id": 78,
+    "symbol": "Lis biegnący z całych sił.",
+    "interpretation": "Duch nieustająco aktywny, który nie dociera do żadnej mety mimo własnego zaufania do siebie samego i subtelności, którą się chełpi."
+  },
+  {
+    "id": 79,
+    "symbol": "Żebrak idący ze swoją sakwą.",
+    "interpretation": "Zabiegi albo podróże bezpłodne."
+  },
+  {
+    "id": 80,
+    "symbol": "Trzy węże rozciągnięte na ziemi.",
+    "interpretation": "Subtelność, przenikliwość, zdolność i dyskrecja."
+  },
+  {
+    "id": 81,
+    "symbol": "Mężczyzna siedzący bokiem na koniu.",
+    "interpretation": "Duch, który daje się łatwo zdominować; zależność od innych."
+  },
+  {
+    "id": 82,
+    "symbol": "Dwa ptaki świergoczące na jednej gałęzi.",
+    "interpretation": "Zamiłowanie do wsi."
+  },
+  {
+    "id": 83,
+    "symbol": "Wlekący się zgrzybiały mężczyzna z laską.",
+    "interpretation": "Charakter słaby; życie trudne."
+  },
+  {
+    "id": 84,
+    "symbol": "Dwie siedzące i rozmawiające kobiety.",
+    "interpretation": "Charakter jowialny, sympatyczny, który zdobędzie przyjaciół."
+  },
+  {
+    "id": 85,
+    "symbol": "Mężczyzna trzymający otwartą książkę.",
+    "interpretation": "Zamiłowanie do studiów, powodzenie w naukach."
+  },
+  {
+    "id": 86,
+    "symbol": "Dwa gryzące się psy.",
+    "interpretation": "Charakter ze skłonnością do gwałtownych sporów."
+  },
+  {
+    "id": 87,
+    "symbol": "Kobieta stojąca i płacząca.",
+    "interpretation": "Przykrości, smutne podróże."
+  },
+  {
+    "id": 88,
+    "symbol": "Dwa byki różnych rozmiarów.",
+    "interpretation": "Życie pracowite."
+  },
+  {
+    "id": 89,
+    "symbol": "Trzy psy biegnące w przeciwnych kierunkach.",
+    "interpretation": "Charakter niestały, szukający szczęścia na przeciwstawnych drogach, ale nie znajdujący go w żadnym miejscu."
+  },
+  {
+    "id": 90,
+    "symbol": "Dwaj mężczyźni, każdy trzymający psa.",
+    "interpretation": "Charakter elastyczny, który dla własnego zysku, zbliży się do ważnych osobistości. Sprytem życiowym i odpowiednimi układami z ludźmi można więcej zyskać, niż uporem."
+  },
+  {
+    "id": 91,
+    "symbol": "Mężczyzna i kobieta trzymający się za ręce.",
+    "interpretation": "Miły charakter, wymiana uczuć."
+  },
+  {
+    "id": 92,
+    "symbol": "Dwie nieruchome kobiety, stojące twarzą w twarz.",
+    "interpretation": "Bezruch."
+  },
+  {
+    "id": 93,
+    "symbol": "Dwaj stojący mężczyźni przed dwoma siedzącymi kobietami.",
+    "interpretation": "Charakter, który więcej niż jeden raz będzie cierpiał wpływy niższych natur."
+  },
+  {
+    "id": 94,
+    "symbol": "Stojąca nieruchomo kobieta czekająca na mężczyznę.",
+    "interpretation": "Charakter skłaniający się w kierunku namiętności seksualnych."
+  },
+  {
+    "id": 95,
+    "symbol": "Młoda dziewczyna stojąca, czekająca na mężczyznę.",
+    "interpretation": "Ta sama wróżba."
+  },
+  {
+    "id": 96,
+    "symbol": "Mężczyzna zanurzający kozę w kotle.",
+    "interpretation": "Charakter ekstrawagancki, duch zagrożony wyobcowaniem."
+  },
+  {
+    "id": 97,
+    "symbol": "Mężczyzna ciągnący kozę za pomocą swojego paska.",
+    "interpretation": "Charakter zepsuty przez okrutne instynkty."
+  },
+  {
+    "id": 98,
+    "symbol": "Stojąca kobieta, w połowie schowana za domem.",
+    "interpretation": "Lenistwo i zepsucie."
+  },
+  {
+    "id": 99,
+    "symbol": "Kobieta trzymająca wrzeciono w prawej ręce.",
+    "interpretation": "Charakter łagodny, przyjazny pracy."
+  },
+  {
+    "id": 100,
+    "symbol": "Mężczyzna trzymający kosz w prawej ręce i siejący ziarno drugą.",
+    "interpretation": "Duch pracowity, który wyciągnie korzyści ze swojej aktywności."
+  },
+  {
+    "id": 101,
+    "symbol": "Nieruchomy statek na wodach.",
+    "interpretation": "Powodzenie w nawigacji."
+  },
+  {
+    "id": 102,
+    "symbol": "Mężczyzna niosący na ramionach owcę bez głowy.",
+    "interpretation": "Okrutne instynkty."
+  },
+  {
+    "id": 103,
+    "symbol": "Siedzący chłopiec trzymający otwartą książkę i pióro.",
+    "interpretation": "Nad wiek rozwinięte zdolności do czynienia dużych postępów w nauce."
+  },
+  {
+    "id": 104,
+    "symbol": "Baranek ze złotą koroną na łbie.",
+    "interpretation": "Powodzenie w sztukach, których znajdują zastosowanie metale i kamienie szlachetne."
+  },
+  {
+    "id": 105,
+    "symbol": "Ukoronowany szczur siedzący na dachu.",
+    "interpretation": "Gusta osiadłe i fortuna osiągnięta bez opuszczania domu."
+  },
+  {
+    "id": 106,
+    "symbol": "Ptak trzymający węża pod swoimi łapami.",
+    "interpretation": "Zwycięstwo nad nieprzyjaciółmi."
+  },
+  {
+    "id": 107,
+    "symbol": "Stojąca nieruchomo kobieta.",
+    "interpretation": "Charakter ospały i leniwy."
+  },
+  {
+    "id": 108,
+    "symbol": "Dwie kobiety grające w kości.",
+    "interpretation": "Zamiłowanie do przyjemności, rujnująca rozrzutność."
+  },
+  {
+    "id": 109,
+    "symbol": "Mężczyzna trzymający lancę w prawej ręce, a flet w drugiej.",
+    "interpretation": "Charakter próżny."
+  },
+  {
+    "id": 110,
+    "symbol": "Pies siedzący na wozie.",
+    "interpretation": "Charakter leniwy."
+  },
+  {
+    "id": 111,
+    "symbol": "Pusty wóz.",
+    "interpretation": "Czas stracony na próżne projekty."
+  },
+  {
+    "id": 112,
+    "symbol": "Stojący nieruchomo mężczyzna.",
+    "interpretation": "Charakter ospały."
+  },
+  {
+    "id": 113,
+    "symbol": "Wodospad.",
+    "interpretation": "Zawiłości losu, niestabilność fortuny."
+  },
+  {
+    "id": 114,
+    "symbol": "Koń przeskakujący nad drugim koniem.",
+    "interpretation": "Wzniosła i szlachetna ambicja, która będzie miała szanse powodzenia."
+  },
+  {
+    "id": 115,
+    "symbol": "Koń bez wędzidła biegnący w poprzek pola.",
+    "interpretation": "Bogata wyobraźnia, charakter nieposkromiony, który pozostawia swój los w rękach przypadku."
+  },
+  {
+    "id": 116,
+    "symbol": "Wodospad spadający ze skały.",
+    "interpretation": "Zawiłości losu, niestabilność fortuny, zagrożenie upadkiem."
+  },
+  {
+    "id": 117,
+    "symbol": "Nieruchomy koń w uprzęży.",
+    "interpretation": "Środki do osiągnięcia sukcesu, możliwość sukcesu, którą niewrażliwość uczyni bezpłodną."
+  },
+  {
+    "id": 118,
+    "symbol": "Dwaj mężczyźni siedzący pod drzewem i przyglądający się siedzącemu krukowi.",
+    "interpretation": "Zależność od innych, poddanie się złej fortunie z powodu braku reakcji."
+  },
+  {
+    "id": 119,
+    "symbol": "Mężczyzna powieszony na szubienicy.",
+    "interpretation": "Żałosny koniec."
+  },
+  {
+    "id": 120,
+    "symbol": "Barka unosząca się na wodzie.",
+    "interpretation": "Nabycie dziedzicznego majątku związanego z żeglugą."
+  },
+  {
+    "id": 121,
+    "symbol": "Mężczyzna trzymający głowę lwa w prawej ręce.",
+    "interpretation": "Zręczność i siła w realizacji przedsięwzięć."
+  },
+  {
+    "id": 122,
+    "symbol": "Statek leżący na boku pośród fal.",
+    "interpretation": "Niepowodzenie w przedsięwzięciach związanych z żeglugą i niebezpieczeństwo śmierci przez zanurzenie."
+  },
+  {
+    "id": 123,
+    "symbol": "Smutny mężczyzna siedzący na taborecie.",
+    "interpretation": "Przeciwności, przykrości."
+  },
+  {
+    "id": 124,
+    "symbol": "Ryba unosząca się pomiędzy dwoma wodami",
+    "interpretation": "Charakter ostrożny, duch bystry, rozważny, przenikliwy, perfidna przewrotność."
+  },
+  {
+    "id": 125,
+    "symbol": "Wąż pełzający po ziemi.",
+    "interpretation": "Duch zawistny."
+  },
+  {
+    "id": 126,
+    "symbol": "Mężczyzna trzymający szpadę w prawej ręce.",
+    "interpretation": "Charakter agresywny."
+  },
+  {
+    "id": 127,
+    "symbol": "Mężczyzna dosiadający lwa.",
+    "interpretation": "Wiedza, siła woli, która doprowadzi do sukcesu."
+  },
+  {
+    "id": 128,
+    "symbol": "Palenisko, z którego wznosi się duży płomień",
+    "interpretation": "Nabycie dziedzicznego majątku dzięki profesjom używającym ognia."
+  },
+  {
+    "id": 129,
+    "symbol": "Mężczyzna bogato ubrany.",
+    "interpretation": "Duma i próżność, zamiłowanie do luksusu."
+  },
+  {
+    "id": 130,
+    "symbol": "Szkielet uzbrojony w sierp.",
+    "interpretation": "Charakter gwałtowny, skłonny do niebezpiecznych rozdrażnień."
+  },
+  {
+    "id": 131,
+    "symbol": "Stojąca kobieta odsłaniająca pierś.",
+    "interpretation": "Skłonność do deprawacji."
+  },
+  {
+    "id": 132,
+    "symbol": "Piękna kobieta bogato ubrana.",
+    "interpretation": "Charakter powściągliwy, czyste zwyczaje."
+  },
+  {
+    "id": 133,
+    "symbol": "Byk siedzący na pastwisku.",
+    "interpretation": "Duch refleksyjny, stanowczość, stałość zamiarów."
+  },
+  {
+    "id": 134,
+    "symbol": "Stojący nieruchomo mężczyzna.",
+    "interpretation": "Flegmatyczność i lenistwo."
+  },
+  {
+    "id": 135,
+    "symbol": "Lew leżący na trawie.",
+    "interpretation": "Charakter stały i spokojny, który czuje się silny w swoich przedsięwzięciach."
+  },
+  {
+    "id": 136,
+    "symbol": "Osioł w uprzęży, który wierzga.",
+    "interpretation": "Charakter niezdyscyplinowany, który otrzyma ciężkie lekcje od losu."
+  },
+  {
+    "id": 137,
+    "symbol": "Stojący wielbłąd.",
+    "interpretation": "Charakter łatwo się irytujący, ale niezdolny do uczynienia krzywdy."
+  },
+  {
+    "id": 138,
+    "symbol": "Klucz, którego kółko dzieli się na cztery odgałęzienia.",
+    "interpretation": "Potężna inteligencja, która osiągnie znaczące sukcesy."
+  },
+  {
+    "id": 139,
+    "symbol": "Mężczyzna ciągnący konia za uzdę.",
+    "interpretation": "Charakter pozbawiony inicjatywy."
+  },
+  {
+    "id": 140,
+    "symbol": "Ręka trzymająca rozwinięty zwój papirusu.",
+    "interpretation": "Posada blisko wybitnych osobistości."
+  },
+  {
+    "id": 141,
+    "symbol": "Mężczyzna trzymający klucz.",
+    "interpretation": "Duch skoncentrowany i władca swoich sekretów."
+  },
+  {
+    "id": 142,
+    "symbol": "Mężczyzna leżący na łóżku z głową odrzuconą do tyłu,.",
+    "interpretation": "Słabość ducha, niebezpieczeństwo choroby mózgu* [*od tłum.: nie umysłową!].."
+  },
+  {
+    "id": 143,
+    "symbol": "Mężczyzna o dwóch głowach, spoglądający jednocześnie przed siebie i za siebie.",
+    "interpretation": "Potężna inteligencja, która zawrze w jednym przeczuciu przeszłość i przyszłość."
+  },
+  {
+    "id": 144,
+    "symbol": "Mężczyzna trzymający piłę w prawej ręce.",
+    "interpretation": "Charakter, który pomyśli zanim zadziała."
+  },
+  {
+    "id": 145,
+    "symbol": "Mężczyzna, który pływa w wzburzonych wodach.",
+    "interpretation": "Charakter, który wytrzyma trudności: powodzenie mozolnie wypracowane w żegludze."
+  },
+  {
+    "id": 146,
+    "symbol": "Mężczyzna rąbiący drwa.",
+    "interpretation": "Życie mozolnie pracowite."
+  },
+  {
+    "id": 147,
+    "symbol": "Mężczyzna trzymający sierp w prawej ręce.",
+    "interpretation": "Zamiłowanie do pracy i zbiorów jej owoców."
+  },
+  {
+    "id": 148,
+    "symbol": "Trzej spacerujący mężczyźni.",
+    "interpretation": "Charakter towarzyski, ale flegmatyczny i niezdecydowany."
+  },
+  {
+    "id": 149,
+    "symbol": "Mężczyzna i kobieta trzymający się za ręce.",
+    "interpretation": "Charakter życzliwy, wymiana uczuć."
+  },
+  {
+    "id": 150,
+    "symbol": "Mężczyzna siedzący bokiem na koniu.",
+    "interpretation": "Zależność, służenie innym."
+  },
+  {
+    "id": 151,
+    "symbol": "Bogato ubrana kobieta siedząca przy stole i podnosząca kielich do ust.",
+    "interpretation": "Instynkty zmysłowe, zamiłowanie do dobrego stołu."
+  },
+  {
+    "id": 152,
+    "symbol": "Dwie siedzące nieruchomo kobiety.",
+    "interpretation": "Charakter leniwy."
+  },
+  {
+    "id": 153,
+    "symbol": "Mężczyzna siejący parzenicę na polu.",
+    "interpretation": "Nabycie dóbr w przedsięwzięciach rolnych."
+  },
+  {
+    "id": 154,
+    "symbol": "Mężczyzna prowadzący wóz.",
+    "interpretation": "Nabycie dóbr w przedsiębiorstwach rolnych."
+  },
+  {
+    "id": 155,
+    "symbol": "Orzeł wypoczywający.",
+    "interpretation": "Powodzenie, które przyjdzie samo przez się; okoliczności sprzyjające interesowi."
+  },
+  {
+    "id": 156,
+    "symbol": "Piękna kobieta, bogato ubrana, stojąca, nieruchoma.",
+    "interpretation": "Lenistwo, zamiłowanie do luksusu i przyjemności."
+  },
+  {
+    "id": 157,
+    "symbol": "Kobieta biednie ubrana, stojąca, nieruchoma.",
+    "interpretation": "Lenistwo, które doprowadzi do nędzy."
+  },
+  {
+    "id": 158,
+    "symbol": "Mężczyzna siedzący pod drzewem.",
+    "interpretation": "Zamiłowanie do wsi."
+  },
+  {
+    "id": 159,
+    "symbol": "Kobieta z zaróżowioną twarzą, bogato ubrana, stojąca, nieruchoma.",
+    "interpretation": "Charakter leniwy i łatwo się irytujący z powodu błahostek."
+  },
+  {
+    "id": 160,
+    "symbol": "Mężczyzna bogato ubrany, stojący, nieruchomy i trzymający jabłko w dłoni.",
+    "interpretation": "Charakter flegmatyczny, zamiłowanie do luksusu i obżarstwa."
+  },
+  {
+    "id": 161,
+    "symbol": "Biały koń, w uprzęży i pędzący z pełną prędkością.",
+    "interpretation": "Inteligentna aktywność."
+  },
+  {
+    "id": 162,
+    "symbol": "Mężczyzna z czarną twarzą ubrany na czerwono.",
+    "interpretation": "Charakter krzywdzący."
+  },
+  {
+    "id": 163,
+    "symbol": "Dwie kobiety zbierające róże.",
+    "interpretation": "Charakter życzliwy, wymiana uczuć."
+  },
+  {
+    "id": 164,
+    "symbol": "Byk stojący na łące.",
+    "interpretation": "Życie pracowite i osiadłe."
+  },
+  {
+    "id": 165,
+    "symbol": "Dwie siedzące i pieszczące się kobiety.",
+    "interpretation": "Zamiłowanie do przyjemności, charakter zniewieściały."
+  },
+  {
+    "id": 166,
+    "symbol": "Dwa psy chyżo biegnące.",
+    "interpretation": "Przedwczesne szczęście."
+  },
+  {
+    "id": 167,
+    "symbol": "Obszar otoczony palisadą.",
+    "interpretation": "Przyszłość spokojna, chroniona przed przeciwnościami."
+  },
+  {
+    "id": 168,
+    "symbol": "Liściaste drzewo szeroko rozpościerające swoje gałęzie.",
+    "interpretation": "Zamiłowanie do wsi."
+  },
+  {
+    "id": 169,
+    "symbol": "Mężczyzna siedzący bokiem na koniu.",
+    "interpretation": "Zależność, służenie innym."
+  },
+  {
+    "id": 170,
+    "symbol": "Ptak ścigający szczura.",
+    "interpretation": "Wrogość, sprzeczki z obcymi."
+  },
+  {
+    "id": 171,
+    "symbol": "Mężczyzna stojący trzymający złoto w jednej ze swoich otwartych dłoni a srebro w drugiej.",
+    "interpretation": "Nabycie dóbr."
+  },
+  {
+    "id": 172,
+    "symbol": "Naga kobieta trzymająca kozła na swoich barkach.",
+    "interpretation": "Zdeprawowane skłonności."
+  },
+  {
+    "id": 173,
+    "symbol": "Mężczyzna na barce.",
+    "interpretation": "Nabycie dóbr poprzez żeglugę."
+  },
+  {
+    "id": 174,
+    "symbol": "Gęś z szyją przywiązaną do pala.",
+    "interpretation": "Duch krótkowzroczny; zawiłości w przedsięwzięciach; popadnięcie w pułapki grubiańsko usnute."
+  },
+  {
+    "id": 175,
+    "symbol": "Mężczyzna wystrzelający kamień z procy.",
+    "interpretation": "Charakter agresywny."
+  },
+  {
+    "id": 176,
+    "symbol": "Dwaj rozmawiający ze sobą mężczyźni.",
+    "interpretation": "Duch towarzyski, wymiana uczuć."
+  },
+  {
+    "id": 177,
+    "symbol": "Dwaj stojący mężczyźni, nieruchomi.",
+    "interpretation": "Flegmatyczność."
+  },
+  {
+    "id": 178,
+    "symbol": "Dwa ptaki siedzące na ziemi i inne krążące wokół.",
+    "interpretation": "Nabycie dóbr."
+  },
+  {
+    "id": 179,
+    "symbol": "Delikatny deszcz padający na trawę.",
+    "interpretation": "Charakter zimny, medytacyjny, ze skłonnością do idei religijnych."
+  },
+  {
+    "id": 180,
+    "symbol": "Mężczyzna bez ust, stojący, nieruchomy.",
+    "interpretation": "Zagrożenie chorobą umysłową."
+  },
+  {
+    "id": 181,
+    "symbol": "Mężczyzna trzymający grom* [*dosł.: krótka dzida; wyrażenie używane w hiszp. odpowiedniku",
+    "interpretation": "powiedzenia: \"ciskać gromy ze złości\"] w każdej ręce. Charakter wojowniczy."
+  },
+  {
+    "id": 182,
+    "symbol": "Mag spalający kadzidło na ołtarzu.",
+    "interpretation": "Charakter kontemplacyjny, tendencje religijne."
+  },
+  {
+    "id": 183,
+    "symbol": "Mężczyzna ze związanymi rękami i nogami.",
+    "interpretation": "Życie trudne, przyszłość z komplikacjami ze wszystkich stron, bezradność."
+  },
+  {
+    "id": 184,
+    "symbol": "Konny mężczyzna na polu.",
+    "interpretation": "Nabycie dziedzicznego majątku związanego z działalnością rolną."
+  },
+  {
+    "id": 185,
+    "symbol": "Czarny ptak z dziobem i łapami czerwonymi.",
+    "interpretation": "Duch mało rozwinięty, mierna inteligencja w przedsięwzięciach."
+  },
+  {
+    "id": 186,
+    "symbol": "Mężczyzna ciągnący pług.",
+    "interpretation": "Życie pracowite, zależność, poddanie innemu."
+  },
+  {
+    "id": 187,
+    "symbol": "Mężczyzna trzymający pierścień w prawej ręce.",
+    "interpretation": "Łatwość w nawiązywaniu niedozwolonych niebezpiecznych relacji."
+  },
+  {
+    "id": 188,
+    "symbol": "Płacząca kobieta w wezgłowia chorego.",
+    "interpretation": "Duże zmartwienia."
+  },
+  {
+    "id": 189,
+    "symbol": "Mężczyzna wymachujący groźnie obnażoną szpadą.",
+    "interpretation": "Charakter agresywny."
+  },
+  {
+    "id": 190,
+    "symbol": "Czarny ptak grzebiący w ziemi dziobem.",
+    "interpretation": "Instynkty upadlające, gusta zdeprawowane."
+  },
+  {
+    "id": 191,
+    "symbol": "Mężczyzna z czarną twarzą, rękoma i nogami białymi.",
+    "interpretation": "Duch flegmatyczny, wahający się, który tylko z trudnością odszukuje drogę powodzenia."
+  },
+  {
+    "id": 192,
+    "symbol": "Stojąca kobieta, patrząca za siebie.",
+    "interpretation": "Charakter leniwy, który nie myśli o niczym innym poza przeszłością."
+  },
+  {
+    "id": 193,
+    "symbol": "Mężczyzna i kobieta, którzy się rozdzielają.",
+    "interpretation": "Charakter kłótliwy i który będzie izolował się od uczuć."
+  },
+  {
+    "id": 194,
+    "symbol": "Duże lustro wiszące na murze.",
+    "interpretation": "Charakter próżny."
+  },
+  {
+    "id": 195,
+    "symbol": "Dwa serca sprzymierzone.",
+    "interpretation": "Charakter frywolny, niestały."
+  },
+  {
+    "id": 196,
+    "symbol": "Biegnący wielbłąd.",
+    "interpretation": "Aktywna inteligencja, którą nic nie męczy."
+  },
+  {
+    "id": 197,
+    "symbol": "Kos siedzący i trzepoczący skrzydłami.",
+    "interpretation": "Charakter beztroski."
+  },
+  {
+    "id": 198,
+    "symbol": "Piękny dom otoczony kwiatami.",
+    "interpretation": "Bogactwo i sukces."
+  },
+  {
+    "id": 199,
+    "symbol": "Cytadela na skale.",
+    "interpretation": "Wywyższenie w zawodzie związanym z bronią."
+  },
+  {
+    "id": 200,
+    "symbol": "Ołtarz, na którym dymi kadzidło.",
+    "interpretation": "Wywyższenie w kapłaństwie."
+  },
+  {
+    "id": 201,
+    "symbol": "Mężczyzna dosiadający osła.",
+    "interpretation": "Instynkty służebne."
+  },
+  {
+    "id": 202,
+    "symbol": "Dwa osiodłane i spokojnie siedzące konie.",
+    "interpretation": "Duch pełen pragnień, ale który niewiele zrealizuje."
+  },
+  {
+    "id": 203,
+    "symbol": "Medyk badający płyn poprzez szklane naczyńko.",
+    "interpretation": "Uzdolnienia w kierunku nauk terapeutycznych."
+  },
+  {
+    "id": 204,
+    "symbol": "Centaur walczący z wężem.",
+    "interpretation": "Wielkie walki przeciwko przenikliwym wrogom."
+  },
+  {
+    "id": 205,
+    "symbol": "Paw królewski rozkładający swój ogon.",
+    "interpretation": "Duma."
+  },
+  {
+    "id": 206,
+    "symbol": "Mężczyzna uzbrojony w laskę i walczący z lwem.",
+    "interpretation": "Powodzenie w karierze wojskowej."
+  },
+  {
+    "id": 207,
+    "symbol": "Drzewo liściaste, które roztacza w dal swój cień.",
+    "interpretation": "Nabycie dziedzicznego majątku, przede wszystkim w działalności rolnej."
+  },
+  {
+    "id": 208,
+    "symbol": "Mężczyzna kopiący ziemię.",
+    "interpretation": "Życie pracowite, przeszkody do pokonania."
+  },
+  {
+    "id": 209,
+    "symbol": "Stojąca kobieta, nieruchoma.",
+    "interpretation": "Charakter flegmatyczny."
+  },
+  {
+    "id": 210,
+    "symbol": "Zając opuszczający las.",
+    "interpretation": "Niepokój, nieśmiałość, powodzenie zmienne."
+  },
+  {
+    "id": 211,
+    "symbol": "Mężczyzna trzymający ostrą włócznię w ręce.",
+    "interpretation": "Instynkty chciwe i krzywdzące."
+  },
+  {
+    "id": 212,
+    "symbol": "Mężczyzna dosiadający słonia.",
+    "interpretation": "Przyszłość szczęśliwa i stabilna."
+  },
+  {
+    "id": 213,
+    "symbol": "Mężczyzna stojący, nieruchomy.",
+    "interpretation": "Charakter flegmatyczny."
+  },
+  {
+    "id": 214,
+    "symbol": "Lira.",
+    "interpretation": "Zamiłowanie do przyjemności i sztuk."
+  },
+  {
+    "id": 215,
+    "symbol": "Mężczyzna bez nóg.",
+    "interpretation": "Duch płodny w projekty, bezpłodny w czyny."
+  },
+  {
+    "id": 216,
+    "symbol": "Osioł z cuglami.",
+    "interpretation": "Duch oporny na rady rozsądku; mało powodzenia w przedsięwzięciach."
+  },
+  {
+    "id": 217,
+    "symbol": "Mężczyzna trzymający torbę w jednej ręce a w drugiej złoty kielich.",
+    "interpretation": "Nabycie dóbr w interesach."
+  },
+  {
+    "id": 218,
+    "symbol": "Duży kogut trzepoczący skrzydłami.",
+    "interpretation": "Wielka inteligencja i uzdolnienia do uprawiania literatury."
+  },
+  {
+    "id": 219,
+    "symbol": "Chłopiec siedzący na stercie kamieni.",
+    "interpretation": "Słabe kompetencje."
+  },
+  {
+    "id": 220,
+    "symbol": "Głowa mężczyzny czyniąca miny.",
+    "interpretation": "Duch zręczny w przebieraniu swoich myśli."
+  },
+  {
+    "id": 221,
+    "symbol": "Mężczyzna trzymający skorpiona za ogon.",
+    "interpretation": "Charakter ciekawy."
+  },
+  {
+    "id": 222,
+    "symbol": "Rój much atakujących węża.",
+    "interpretation": "Roztropność i przenikliwość z tendencją do czynienia zła."
+  },
+  {
+    "id": 223,
+    "symbol": "Wieża.",
+    "interpretation": "Solidność, stałość pracowita, nabycie dóbr."
+  },
+  {
+    "id": 224,
+    "symbol": "Studnia, której woda występuje z brzegów.",
+    "interpretation": "Nieumiarkowanie ducha, które spowoduje wymknięcie się jego sekretów; zawiłości losu."
+  },
+  {
+    "id": 225,
+    "symbol": "Piękna kobieta, stojąca, nieruchoma.",
+    "interpretation": "Próżność i lenistwo."
+  },
+  {
+    "id": 226,
+    "symbol": "Kobieta dająca jałmużnę biednemu.",
+    "interpretation": "Dobroć serca."
+  },
+  {
+    "id": 227,
+    "symbol": "Wilk biegnący przez pole.",
+    "interpretation": "Instynkty drapieżne."
+  },
+  {
+    "id": 228,
+    "symbol": "Kobieta częściowo schowana za drzwiami.",
+    "interpretation": "Duch podejrzliwy i nieufny, lenistwo."
+  },
+  {
+    "id": 229,
+    "symbol": "Pies z otwartym pyskiem i wielkimi uszami.",
+    "interpretation": "Protekcja wybitnych osobistości."
+  },
+  {
+    "id": 230,
+    "symbol": "Mężczyzna dosiadający wielbłąda.",
+    "interpretation": "Duch solidny i cierpliwy."
+  },
+  {
+    "id": 231,
+    "symbol": "Nieokiełznany koń biegnący w poprzek pola.",
+    "interpretation": "Charakter, który nie poddaje się żadnej dyscyplinie."
+  },
+  {
+    "id": 232,
+    "symbol": "Strumień, który przeskakuje ze skały na skałę.",
+    "interpretation": "Niestałość i duże zawiłości losu."
+  },
+  {
+    "id": 233,
+    "symbol": "Malutkie strumyczki, które wybijają z tego samego źródła.",
+    "interpretation": "Duch, który roztrwoni swoje siły na rozproszone projekty"
+  },
+  {
+    "id": 234,
+    "symbol": "Kobieta trzymająca wrzeciono w prawej ręce.",
+    "interpretation": "Charakter pracowity."
+  },
+  {
+    "id": 235,
+    "symbol": "Wilk trzymający gęś w paszczy.",
+    "interpretation": "Instynkty drapieżne."
+  },
+  {
+    "id": 236,
+    "symbol": "Mężczyzna obładowany wypełnioną sakwą i biegnący.",
+    "interpretation": "Skłonność do przywłaszczania cudzego dobra."
+  },
+  {
+    "id": 237,
+    "symbol": "Dwaj mężczyźni stojący i rozmawiający.",
+    "interpretation": "Charakter towarzyski i sympatyczny."
+  },
+  {
+    "id": 238,
+    "symbol": "Świątynia",
+    "interpretation": "Wywyższenie w kapłaństwie."
+  },
+  {
+    "id": 239,
+    "symbol": "Siedzący mężczyzna trzymający otwartą książkę.",
+    "interpretation": "Uzdolnienie do nauki."
+  },
+  {
+    "id": 240,
+    "symbol": "Wąż z głową smoka.",
+    "interpretation": "Duch roztropny i przenikliwy."
+  },
+  {
+    "id": 241,
+    "symbol": "Trzej mężczyźni bez głów, stojący.",
+    "interpretation": "Zamiłowanie do sprawiedliwości, duch religijny."
+  },
+  {
+    "id": 242,
+    "symbol": "Mężczyzna rzucający kamienie za pomocą procy.",
+    "interpretation": "Charakter agresywny."
+  },
+  {
+    "id": 243,
+    "symbol": "Mężczyzna siedzący na baranie.",
+    "interpretation": "Duch zawzięty i kłótliwy."
+  },
+  {
+    "id": 244,
+    "symbol": "Idący mężczyzna z piką na ramieniu.",
+    "interpretation": "Instynkty drapieżne."
+  },
+  {
+    "id": 245,
+    "symbol": "Kobieta niosąca kołyską na plecach.",
+    "interpretation": "Charakter pracowity."
+  },
+  {
+    "id": 246,
+    "symbol": "Byk z trzema rogami.",
+    "interpretation": "Wyższa inteligencja."
+  },
+  {
+    "id": 247,
+    "symbol": "Stojąca kobieta, nieruchoma.",
+    "interpretation": "Charakter flegmatyczny."
+  },
+  {
+    "id": 248,
+    "symbol": "Dwaj mężczyźni grający w kości na stole.",
+    "interpretation": "Zamiłowanie do gry, duch lubiący przygody, który liczy na dobrodziejstwa płynące z hazardu."
+  },
+  {
+    "id": 249,
+    "symbol": "Stos w płomieniach.",
+    "interpretation": "Powodzenie w profesjach, które używają ognia."
+  },
+  {
+    "id": 250,
+    "symbol": "Sterta złota, srebra i ołowiu.",
+    "interpretation": "Zróżnicowane bogactwo."
+  },
+  {
+    "id": 251,
+    "symbol": "Małpa siedząca na wilku.",
+    "interpretation": "Charakter przenikliwy, który zatriumfuje nad siłą."
+  },
+  {
+    "id": 252,
+    "symbol": "Mężczyzna siedzący na koźle.",
+    "interpretation": "Duch konfrontujący."
+  },
+  {
+    "id": 253,
+    "symbol": "Stojący mężczyzna z rękami związanymi na plecach.",
+    "interpretation": "Opresja."
+  },
+  {
+    "id": 254,
+    "symbol": "Mężczyzna trzymający otwartą książkę.",
+    "interpretation": "Uzdolnienia do nauki."
+  },
+  {
+    "id": 255,
+    "symbol": "Mężczyzna na koniu, trzymający się szyi swojego wierzchowca.",
+    "interpretation": "Słabość ducha."
+  },
+  {
+    "id": 256,
+    "symbol": "Pusty wóz.",
+    "interpretation": "Duch bezsilny i bezpłodny w dzieła."
+  },
+  {
+    "id": 257,
+    "symbol": "Zgrzybiały mężczyzna oparty na lasce.",
+    "interpretation": "Groźba niedoli."
+  },
+  {
+    "id": 258,
+    "symbol": "Mężczyzna jedną ręką trzymający ptaka za ogon, a drugą pochodnię.",
+    "interpretation": "Uzdolnienia do studiowania nauk tajemnych."
+  },
+  {
+    "id": 259,
+    "symbol": "Dom otoczony płonącymi pochodniami.",
+    "interpretation": "Istnienie otoczone przeciwnościami."
+  },
+  {
+    "id": 260,
+    "symbol": "Trzej spacerujący mężczyźni z posplatanymi rękoma.",
+    "interpretation": "Charakter towarzyski i sympatyczny."
+  },
+  {
+    "id": 261,
+    "symbol": "Mag z tiara na twarzy i berłem w ręce.",
+    "interpretation": "Uzdolnienia do wzniosłych nauk."
+  },
+  {
+    "id": 262,
+    "symbol": "Dwaj mężczyźni, który wzajemnie przeszywają się szpadami.",
+    "interpretation": "Instynkty samobójcze."
+  },
+  {
+    "id": 263,
+    "symbol": "Dwie kobiety wzajemnie zasztyletowujące się.",
+    "interpretation": "Ta sama przepowiednia, co powyżej."
+  },
+  {
+    "id": 264,
+    "symbol": "Mężczyzna zasztyletowujący się.",
+    "interpretation": "Samobójstwo."
+  },
+  {
+    "id": 265,
+    "symbol": "Mężczyzna wymiotujący.",
+    "interpretation": "Życie rozwiązłe."
+  },
+  {
+    "id": 266,
+    "symbol": "Mężczyzna, który bawi się różdżkami.",
+    "interpretation": "Charakter lekki, trwoniący, zamiłowanie do teatru."
+  },
+  {
+    "id": 267,
+    "symbol": "Mężczyzna wiszący na rękach.",
+    "interpretation": "Duże zawiłości."
+  },
+  {
+    "id": 268,
+    "symbol": "Mężczyzna siedzący na wielbłądzie.",
+    "interpretation": "Niewzruszoność i cierpliwość."
+  },
+  {
+    "id": 269,
+    "symbol": "Mężczyzna przeskakujący z jednego łóżka na drugie.",
+    "interpretation": "Dziecinna błahostka."
+  },
+  {
+    "id": 270,
+    "symbol": "Mężczyzna wymachujący młotkiem.",
+    "interpretation": "Nabycie dziedzicznego majątku za pomocą sztuki używającej żelaza."
+  },
+  {
+    "id": 271,
+    "symbol": "Dwaj mężczyźni całkowicie podobni.",
+    "interpretation": "Taki sam charakter, wymiana sympatii."
+  },
+  {
+    "id": 272,
+    "symbol": "Mężczyzna trzymający trzcinę.",
+    "interpretation": "Niemoc."
+  },
+  {
+    "id": 273,
+    "symbol": "Duży wąż.",
+    "interpretation": "Wiedza, roztropność, ostrożność, tajność."
+  },
+  {
+    "id": 274,
+    "symbol": "Dwa klucze tworzące krzyż w blasku słońca.",
+    "interpretation": "Zamiłowanie do prawdy i sprawiedliwości, dwa klucze boskiego świata."
+  },
+  {
+    "id": 275,
+    "symbol": "Dwoje otwartych drzwi.",
+    "interpretation": "Duch szczodry, serce życzliwe."
+  },
+  {
+    "id": 276,
+    "symbol": "Mężczyzna trzymający po jednym psie na każdym ramieniu.",
+    "interpretation": "Charakter kłótliwy."
+  },
+  {
+    "id": 277,
+    "symbol": "Dwaj mężczyźni stojący na przeciw jednej kobiety.",
+    "interpretation": "Frywolność."
+  },
+  {
+    "id": 278,
+    "symbol": "Ręka trzymająca ptaka.",
+    "interpretation": "Uciekające szczęście."
+  },
+  {
+    "id": 279,
+    "symbol": "Mężczyzna upadający na ziemię.",
+    "interpretation": "Słabość, niemoc."
+  },
+  {
+    "id": 280,
+    "symbol": "Mężczyzna trzymający sowę w każdej ręce.",
+    "interpretation": "Wypadek nocny."
+  },
+  {
+    "id": 281,
+    "symbol": "Ukoronowany król otrzymujący wiadomość.",
+    "interpretation": "Przychylność wielkich."
+  },
+  {
+    "id": 282,
+    "symbol": "Mężczyzna biegnący z całych sił.",
+    "interpretation": "Aktywność w ściganiu swoich zamierzeń."
+  },
+  {
+    "id": 283,
+    "symbol": "Mężczyzna trzymający zdekapitowanego barana na swoich barkach.",
+    "interpretation": "Instynkty okrutne."
+  },
+  {
+    "id": 284,
+    "symbol": "Ręka trzymająca strzałę/grot/lancę.",
+    "interpretation": "Charakter agresywny."
+  },
+  {
+    "id": 285,
+    "symbol": "Mężczyzna klęczący.",
+    "interpretation": "Duch giętki, pochlebny, który zyska przychylność wielkich."
+  },
+  {
+    "id": 286,
+    "symbol": "Mężczyzna dosiadający nieokiełznanego konia.",
+    "interpretation": "Niemoc."
+  },
+  {
+    "id": 287,
+    "symbol": "Mężczyzna z głową psa.",
+    "interpretation": "Charakter zawistny, agresywny."
+  },
+  {
+    "id": 288,
+    "symbol": "Mężczyzna przecięty w połowie ciała na dwie części.",
+    "interpretation": "Małoduszność, słabość, niemoc."
+  },
+  {
+    "id": 289,
+    "symbol": "Mężczyzna stojący prosto, z czterema nogami, nieruchomy.",
+    "interpretation": "Flegmatyczność, inercja w momencie działania."
+  },
+  {
+    "id": 290,
+    "symbol": "Małpa przeglądająca się w lustrze.",
+    "interpretation": "Próżność."
+  },
+  {
+    "id": 291,
+    "symbol": "Mężczyzna trzymający otwartą książkę.",
+    "interpretation": "Uzdolnienia do nauk."
+  },
+  {
+    "id": 292,
+    "symbol": "Mężczyzna kopiący w ziemi.",
+    "interpretation": "Nabycie dóbr."
+  },
+  {
+    "id": 293,
+    "symbol": "Mężczyzna ciągnący kobietę za rękę.",
+    "interpretation": "Instynkt rozentuzjazmowany w kobietach."
+  },
+  {
+    "id": 294,
+    "symbol": "Mężczyzna robiący beczkę.",
+    "interpretation": "Nabycie dóbr w pracach ręcznych."
+  },
+  {
+    "id": 295,
+    "symbol": "Mężczyzna trzymający ptaka.",
+    "interpretation": "Wzniesienie."
+  },
+  {
+    "id": 296,
+    "symbol": "Ścieżka poprzez las.",
+    "interpretation": "Nabycie dóbr, przede wszystkim w rolnictwie."
+  },
+  {
+    "id": 297,
+    "symbol": "Mężczyzna leżący na trawie.",
+    "interpretation": "Słabość, lenistwo, niemoc."
+  },
+  {
+    "id": 298,
+    "symbol": "Mężczyzna trzymający balon nad głową.",
+    "interpretation": "Bogactwo."
+  },
+  {
+    "id": 299,
+    "symbol": "Piękna kobieta siedząca na taborecie.",
+    "interpretation": "Życie łagodne i szczęśliwe."
+  },
+  {
+    "id": 300,
+    "symbol": "Ogon ryby.",
+    "interpretation": "Przedsięwzięcia, które się nie zrealizują."
+  },
+  {
+    "id": 301,
+    "symbol": "Mężczyzna trzymający ptaka w każdej ręce.",
+    "interpretation": "Duch zawiły i bez inicjatywy."
+  },
+  {
+    "id": 302,
+    "symbol": "Mężczyzna trzymający się za głowę obiema rękami.",
+    "interpretation": "Duże zmartwienia."
+  },
+  {
+    "id": 303,
+    "symbol": "Mężczyzna z głową wspartą na dłoni.",
+    "interpretation": "Wielki ból."
+  },
+  {
+    "id": 304,
+    "symbol": "Mężczyzna na koniu, trzymający przed sobą zamknięty kuferek.",
+    "interpretation": "Powodzenie w interesach, ale koleje losu nieprzewidziane."
+  },
+  {
+    "id": 305,
+    "symbol": "Kobieta śledzona przez mężczyznę.",
+    "interpretation": "Zamieszanie/niepokoje, niepokój, niebezpieczeństwo."
+  },
+  {
+    "id": 306,
+    "symbol": "Mężczyzna bawiący się różdżkami.",
+    "interpretation": "Duch żywy, jowialny, frywolny."
+  },
+  {
+    "id": 307,
+    "symbol": "Miecz wyjęty z pochwy i położony na ziemi.",
+    "interpretation": "Charakter agresywny."
+  },
+  {
+    "id": 308,
+    "symbol": "Mężczyzna trzymający łańcuch w otwartej dłoni.",
+    "interpretation": "Charakter, który się nie kontroluje."
+  },
+  {
+    "id": 309,
+    "symbol": "Mężczyzna, który podnosi drugiego.",
+    "interpretation": "Dominacja."
+  },
+  {
+    "id": 310,
+    "symbol": "Mężczyzna bez głowy.",
+    "interpretation": "Niemoc."
+  },
+  {
+    "id": 311,
+    "symbol": "Mężczyzna uzbrojony, bez głowy.",
+    "interpretation": "Energia bez wytrwałości."
+  },
+  {
+    "id": 312,
+    "symbol": "Uzbrojony mężczyzna bijący króla.",
+    "interpretation": "Wyniesienie."
+  },
+  {
+    "id": 313,
+    "symbol": "Zastęp uzbrojonych jeźdźców kawalerii.",
+    "interpretation": "Charakter skłonny do przemocy, powodzenie w zawodzie zw. z bronią."
+  },
+  {
+    "id": 314,
+    "symbol": "Mężczyzna trzymający w ręku odciętą nogę.",
+    "interpretation": "Przyszłość przecięta/skrócona przez katastrofę."
+  },
+  {
+    "id": 315,
+    "symbol": "Dwaj mężczyźni dosiadający jednorożca.",
+    "interpretation": "Charakter agresywny."
+  },
+  {
+    "id": 316,
+    "symbol": "Mężczyzna trzymający pochodnię.",
+    "interpretation": "Nabycie dóbr w zawodach wykorzystujących ogień."
+  },
+  {
+    "id": 317,
+    "symbol": "Chora kobieta leżąca na łóżku.",
+    "interpretation": "Dolegliwości."
+  },
+  {
+    "id": 318,
+    "symbol": "Siedząca sowa.",
+    "interpretation": "Charakter zawistny, udający."
+  },
+  {
+    "id": 319,
+    "symbol": "Mężczyzna zdekapitowany, trzymający swoją głowę w dłoni.",
+    "interpretation": "Wyniesienie."
+  },
+  {
+    "id": 320,
+    "symbol": "Zgrzybiała kobieta, pochylona nad swoja laską.",
+    "interpretation": "Słabość, niemoc."
+  },
+  {
+    "id": 321,
+    "symbol": "Mężczyzna leżący na plecach na ziemi.",
+    "interpretation": "Dolegliwości."
+  },
+  {
+    "id": 322,
+    "symbol": "Mężczyzna odcinający siekierą ręce i nogi drugiego.",
+    "interpretation": "Instynkty krzywdzące i niebezpieczne."
+  },
+  {
+    "id": 323,
+    "symbol": "Dwa psy chyżo biegnące.",
+    "interpretation": "Aktywność, szczęśliwa wiara w siebie samego."
+  },
+  {
+    "id": 324,
+    "symbol": "Płaczący mężczyzna osuszający sobie oczy wierzchem dłoni.",
+    "interpretation": "Częste przykrości."
+  },
+  {
+    "id": 325,
+    "symbol": "Mężczyzna groźnie wymachujący ostrą włócznią.",
+    "interpretation": "Krzywdzące skłonności."
+  },
+  {
+    "id": 326,
+    "symbol": "Wodospad spadający ze skały.",
+    "interpretation": "Zmienne koleje losu."
+  },
+  {
+    "id": 327,
+    "symbol": "Dom otoczony palisadą.",
+    "interpretation": "Roztropność i bezpieczna pewność w przedsięwzięciach."
+  },
+  {
+    "id": 328,
+    "symbol": "Mężczyzna pijący z kielicha.",
+    "interpretation": "Instynkty zmysłowe."
+  },
+  {
+    "id": 329,
+    "symbol": "Mężczyzna na koniu, groźnie wymachujący szpadą.",
+    "interpretation": "Charakter agresywny."
+  },
+  {
+    "id": 330,
+    "symbol": "Król z koroną na głowie, siedzący na swoim tronie.",
+    "interpretation": "Powodzenie, wyniesienie."
+  },
+  {
+    "id": 331,
+    "symbol": "Głowa mężczyzny na podwójnym ciele.",
+    "interpretation": "Duch kłótliwy, zmienne koleje losu."
+  },
+  {
+    "id": 332,
+    "symbol": "Mężczyzna siedzący na ziemi.",
+    "interpretation": "Nabycie dziedzicznego majątku, zwłaszcza w przedsiębiorstwach rolnych."
+  },
+  {
+    "id": 333,
+    "symbol": "Mężczyzna jedzący.",
+    "interpretation": "Nabycie dziedzicznego majątku dzięki prowadzeniu zajazdu."
+  },
+  {
+    "id": 334,
+    "symbol": "Jednorożec siedzący na trawie.",
+    "interpretation": "Słabość, niemoc."
+  },
+  {
+    "id": 335,
+    "symbol": "Dwie młode dziewczyny, które na siebie patrzą.",
+    "interpretation": "Skłonność do rozkoszowania się."
+  },
+  {
+    "id": 336,
+    "symbol": "Sowa siedząca na ruinach.",
+    "interpretation": "Chciwość."
+  },
+  {
+    "id": 337,
+    "symbol": "Mężczyzna trzymający kadzidło.",
+    "interpretation": "Powodzenie w kapłaństwie."
+  },
+  {
+    "id": 338,
+    "symbol": "Nagi mężczyzna w beczce, z pasem w dłoni.",
+    "interpretation": "Nabycie dziedzicznego majątku w profesji łaziebnego"
+  },
+  {
+    "id": 339,
+    "symbol": "Mężczyzna na szosie, z tobołkiem zawieszonym na kiju.",
+    "interpretation": "Niepewna fortuna."
+  },
+  {
+    "id": 340,
+    "symbol": "Mężczyzna rozcierający w swoim moździerzu.",
+    "interpretation": "Nabycie dziedzicznego majątku w zawodzie lekarza."
+  },
+  {
+    "id": 341,
+    "symbol": "Idący mężczyzna z laską.",
+    "interpretation": "Charakter przygodowy."
+  },
+  {
+    "id": 342,
+    "symbol": "Młodzieniec bogato ubrany i oglądający się za siebie.",
+    "interpretation": "Duch drobiazgowy, niespokojny, wątpiący w przyszłość podczas, gdy śni o przeszłości."
+  },
+  {
+    "id": 343,
+    "symbol": "Mężczyzna i kobieta powoli jadący konno.",
+    "interpretation": "Czas stracony na błahostki."
+  },
+  {
+    "id": 344,
+    "symbol": "Mężczyzna rąbiący drwa w lesie.",
+    "interpretation": "Nabycie dziedzicznego majątku, zwłaszcza w przedsiębiorstwach rolnych."
+  },
+  {
+    "id": 345,
+    "symbol": "Mężczyzna uzbrojony w nóż.",
+    "interpretation": "Charakter agresywny."
+  },
+  {
+    "id": 346,
+    "symbol": "Mężczyzna trzymający koguta.",
+    "interpretation": "Wyniesienie."
+  },
+  {
+    "id": 347,
+    "symbol": "Mężczyzna, który skacze do wody.",
+    "interpretation": "Zagrożenie chorobą mózgu* [*od tłum.: nie umysłową!]."
+  },
+  {
+    "id": 348,
+    "symbol": "Dwa konie walczące.",
+    "interpretation": "Charakter agresywny."
+  },
+  {
+    "id": 349,
+    "symbol": "Mężczyzna, który przeszywa się szpadą.",
+    "interpretation": "Samobójstwo, lub gwałtowna śmierć sprowokowana przez siebie samego."
+  },
+  {
+    "id": 350,
+    "symbol": "Księżyc unoszący się pomiędzy chmurami.",
+    "interpretation": "Zmienne koleje losu."
+  },
+  {
+    "id": 351,
+    "symbol": "Dwaj mężczyźni, którzy wzajemnie zadają sobie ciosy sztyletami.",
+    "interpretation": "Instynkty złowieszcze i niebezpieczne."
+  },
+  {
+    "id": 352,
+    "symbol": "Piękna kobieta z poszarpanymi szatami.",
+    "interpretation": "Utrata powodzenia z powodu deprawacji."
+  },
+  {
+    "id": 353,
+    "symbol": "Kobieta na łódce bez wioseł.",
+    "interpretation": "Brak troski o przyszłość, życie spędzone wśród okoliczności przypadkowych."
+  },
+  {
+    "id": 354,
+    "symbol": "Mężczyzna i kobieta leżący w łóżku.",
+    "interpretation": "Skłonności zmysłowe, lenistwo."
+  },
+  {
+    "id": 355,
+    "symbol": "Mężczyzna ciskający kamienie za pomocą procy.",
+    "interpretation": "Charakter agresywny."
+  },
+  {
+    "id": 356,
+    "symbol": "Kobieta odcinająca głowę śpiącemu wojownikowi.",
+    "interpretation": "Duch przenikliwy, który zaskoczy swoich wrogów i zniszczy ich spisek."
+  },
+  {
+    "id": 357,
+    "symbol": "Nagi mężczyzna stukający do drzwi.",
+    "interpretation": "Zdeprawowane skłonności."
+  },
+  {
+    "id": 358,
+    "symbol": "Mężczyzna na koniu, trzymający w jednej ręce ptaka, a w drugiej węża.",
+    "interpretation": "Duże wyrafinowanie ducha."
+  },
+  {
+    "id": 359,
+    "symbol": "Duża ryba leżąca na plaży.",
+    "interpretation": "Zmienne koleje losu, zagrożenie katastrofą."
+  },
+  {
+    "id": 360,
+    "symbol": "Kobieta przeglądająca się w lustrze.",
+    "interpretation": "Próżność, zamiłowanie do luksusu, rozsądek zdominowany przez zmysły."
+  }
+]

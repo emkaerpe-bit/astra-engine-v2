@@ -1,4 +1,4 @@
-/**
+pe/**
  * Standalone Pattern Detection Script - FULL VERSION
  * Detects: Grand Trine, Kite, Yod, T-Square, Grand Cross, Mystic Rectangle, Stellium
  */

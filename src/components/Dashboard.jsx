@@ -13,6 +13,8 @@ import TransitControl from './TransitControl';
 import TransitLaboratory from './TransitLaboratory';
 import { PlanetGlyph, ZodiacGlyph } from './Glyphs';
 import MoonPhase from './MoonPhase';
+import ZodiacalReleasing from './ZodiacalReleasing';
+import AstroCartoGraphy from './AstroCartoGraphy';
 import { t } from '../utils/astroTranslations';
 
 const BIG_THREE_ICONS = {
@@ -41,7 +43,13 @@ export default function Dashboard({
   onToggleTimeMachine,
   onHouseSystemChange,
   activePatterns,
-  setShowDispositorLaboratory
+  setShowDispositorLaboratory,
+  showACG,
+  isDualWheel,
+  secondChartData,
+  onToggleDualWheel,
+  onLoadSecondChart,
+  onOpenSynastrySetup
 }) {
   const dashRef = useRef(null);
   const ctxRef = useRef(null);
@@ -76,25 +84,25 @@ export default function Dashboard({
     return () => ctxRef.current?.revert();
   }, [chartData]);
 
-  if (error) {
+  if (error || chartData?.error) {
     return (
-      <div className="min-h-screen flex items-center justify-center p-6 text-center">
-        <div className="max-w-md p-8 rounded-3xl border border-red-900/50 bg-[#F1E9DE] gold-glow" style={{
-        transform: 'translateX(-50%)',
-        width: 'min(90vw, 520px)',
-        background: 'rgba(251, 247, 241, 0.85)',
-        backdropFilter: 'blur(24px)',
-        WebkitBackdropFilter: 'blur(24px)',
-        border: '1px solid rgba(201, 190, 177, 0.4)',
-        boxShadow: '0 8px 32px rgba(0,0,0,0.03), 0 0 0 1px rgba(201, 190, 177, 0.1)',
-      }}>
-          <Zap className="mx-auto mb-4 text-red-500" size={32} />
-          <h2 className="font-serif italic text-2xl mb-4">Calculation Failed</h2>
-          <p className="text-[#8C8883] text-sm mb-6">{error}</p>
-          <button onClick={() => window.location.reload()} className="btn-magnetic px-6 py-3 rounded-xl bg-[#1F2226] text-[#F1E9DE] font-bold uppercase text-xs tracking-widest">
-            Retry Protocol
-          </button>
+      <div className="min-h-screen bg-[#F1E9DE] flex flex-col items-center justify-center p-8 text-center">
+        <div className="w-20 h-20 rounded-full border border-red-200 bg-white flex items-center justify-center mb-8 shadow-sm">
+          <Zap size={32} className="text-red-500 animate-pulse" />
         </div>
+        <h2 className="font-serif italic text-4xl mb-3 text-[#1F2226]">System Interruption</h2>
+        <p className="text-[10px] font-mono uppercase tracking-[0.3em] text-[#8C8883] mb-6">Celestial Calculation Failure</p>
+        <div className="bg-white/50 border border-red-100 rounded-2xl p-6 mb-10 max-w-md backdrop-blur-sm">
+          <p className="text-xs font-mono text-red-600 leading-relaxed">
+            {chartData?.detail || chartData?.error || error || "An unknown anomaly occurred during planetary synthesis."}
+          </p>
+        </div>
+        <button 
+          onClick={() => window.location.reload()}
+          className="bg-[#1F2226] text-[#F1E9DE] px-10 py-4 rounded-full font-mono text-[10px] uppercase tracking-widest hover:bg-[#D4AF37] hover:text-[#1F2226] transition-all duration-500 shadow-xl"
+        >
+          Re-Initialize Protocol
+        </button>
       </div>
     );
   }
@@ -132,17 +140,17 @@ export default function Dashboard({
             {/* Session Info */}
             <div className="card-reveal translate-y-4 font-mono">
               <div className="flex items-center gap-2 mb-1">
-                <div className="w-1.5 h-1.5 rounded-full bg-[#8C8883] animate-pulse" />
-                <h1 className="text-[#1F2226] text-sm font-serif italic tracking-tight uppercase">Ad Astra v3.0 Professional</h1>
+                <div className="w-1.5 h-1.5 rounded-full bg-[#D4AF37] animate-pulse" />
+                <h1 className="text-[#1F2226] text-sm font-serif italic tracking-tight uppercase">Ad Astra v3.0 [SYN-1.5] Professional</h1>
               </div>
               <div className="text-[10px] text-[#1F2226] uppercase tracking-tighter leading-tight font-bold">
                 <div className="bg-[#1F2226] text-[#F1E9DE] px-2 py-0.5 rounded inline-block mb-1">
                   {new Date(input.year, input.month - 1, input.day).toLocaleDateString('pl-PL', { day: 'numeric', month: 'long', year: 'numeric' })} · {String(input.hour).padStart(2, '0')}:{String(input.minute).padStart(2, '0')}
                 </div>
                 <div className="truncate max-w-[320px] text-[#8C8883]">
-                  {input.location.resolved.split(',').length > 1 
+                  {input?.location?.resolved?.split(',')?.length > 1 
                     ? `${input.location.resolved.split(',')[0].trim()}, ${input.location.resolved.split(',').pop().trim()}`
-                    : input.location.resolved}
+                    : input?.location?.resolved || 'Relocated Position'}
                 </div>
               </div>
             </div>
@@ -153,7 +161,7 @@ export default function Dashboard({
                 <h3 className="font-mono text-[9px] text-[#1F2226] tracking-widest uppercase font-bold">— Macierz Efemeryd</h3>
               </div>
               <div className="p-3 space-y-1 font-mono pr-2">
-                {planets?.map((p) => (
+                {planets?.filter(p => activePlanets.has(p.key)).map((p) => (
                   <div key={p?.key} className="flex items-center text-[10px] leading-relaxed hover:bg-[#C9BEB1]/10 px-1 rounded transition-colors gap-3">
                     <div className="flex items-center gap-2 w-[100px]">
                       <div className="w-4 flex items-center justify-center">
@@ -163,7 +171,7 @@ export default function Dashboard({
                     </div>
                     <div className="flex items-center justify-end text-[#1F2226] font-bold gap-1">
                       <span className="w-4 text-right">{(p?.degreeInSign || "").split(' ')[0] || "0"}</span>
-                      <span className="opacity-60">{t(p?.sign)?.substring(0,3)}</span>
+                      <span className="opacity-60">{p?.iauConstellation ? p.iauConstellation.substring(0,3).toUpperCase() : t(p?.sign)?.substring(0,3)}</span>
                       <span className="w-8 text-right">{(p?.degreeInSign || "").split(' ')[1] || "0'"}</span>
                       {p?.isRetrograde && <span className="text-red-600 font-bold ml-1">R</span>}
                     </div>
@@ -240,6 +248,7 @@ export default function Dashboard({
                 activePatterns={activePatterns}
                 transitData={isTransitActive ? transitData : null}
                 prognosticData={prognosticData}
+                secondChartData={isDualWheel ? secondChartData : null}
               />
             </div>
           </div>
@@ -249,31 +258,41 @@ export default function Dashboard({
       {/* 2. FULL WIDTH ASPECT GRID (EDGE TO EDGE) */}
       <div className="card-reveal translate-y-8 w-full border-y border-[#C9BEB1]/30 bg-white">
         <TriangularAspectGrid 
-          planets={planets} 
+          planets={planets.filter(p => activePlanets.has(p.key))} 
           title="Siatka Aspektów [Harmonika Geometryczna]" 
           colorClass="text-[#1F2226]"
           onHover={handleShowTooltip}
           onLeave={handleHideTooltip}
+          patterns={chartData.patterns}
+          activePatterns={activePatterns}
         />
       </div>
 
       {/* 3. LOWER DASHBOARD (CONSTRAINED 1500px) */}
       <div className="max-w-[1500px] mx-auto px-4 lg:px-8">
         {/* Analytical Data Panel */}
-        <DataPanel planets={planets} aspects={aspects} houses={houses} />
+        <DataPanel 
+          planets={planets.filter(p => activePlanets.has(p.key))} 
+          aspects={aspects} 
+          houses={houses} 
+          lots={chartData.lots} 
+          metadata={chartData.metadata} 
+        />
 
-        {/* Detailed Ephemeris Table */}
+
+        {/* BOTTOM: Detailed Ephemeris Table */}
         <div className="card-reveal translate-y-8 mt-20 pt-20 border-t border-[#C9BEB1]/20">
           <div className="text-center mb-10">
-            <h3 className="font-serif italic text-3xl text-[#1F2226] font-bold">Macierz Astronomiczna</h3>
-            <p className="text-[#8C8883] text-xs font-mono mt-2 tracking-widest uppercase font-bold">Protokół Głębokich Danych v1.0</p>
+            <h3 className="font-serif italic text-4xl text-[#1F2226] font-bold">Macierz Astronomiczna</h3>
+            <p className="text-[#8C8883] text-xs font-mono mt-2 tracking-widest uppercase font-bold">Protokół Głębokich Danych Ad Astra v3.0 | System: {chartData.metadata.zodiacType?.toUpperCase()}</p>
           </div>
           <EphemerisTable 
-            planets={planets} 
-            houses={houses} 
+            chartData={{
+              ...chartData,
+              planets: chartData.planets.filter(p => activePlanets.has(p.key))
+            }} 
             onHouseSystemChange={onHouseSystemChange} 
           />
-          
         </div>
       </div>
 
@@ -298,8 +317,13 @@ export default function Dashboard({
         chartData={chartData}
         transitData={transitData}
         onClose={() => setShowLaboratory(false)}
+        secondChartData={secondChartData}
+        onToggleDualWheel={onToggleDualWheel}
+        onLoadSecondChart={onLoadSecondChart}
+        onOpenSynastrySetup={onOpenSynastrySetup}
         activePlanets={activePlanets}
         activeAspects={activeAspects}
+        activePatterns={activePatterns}
         onTimeChange={onTimeChange}
         showTimeMachine={showTimeMachine}
         onToggleTimeMachine={onToggleTimeMachine}

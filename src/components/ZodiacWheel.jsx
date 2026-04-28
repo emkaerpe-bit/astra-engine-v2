@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useMemo } from 'react';
 import { PlanetGlyph } from './Glyphs';
 import { gsap } from 'gsap';
+import { t } from '../utils/astroTranslations';
 
 /**
  * ═══════════════════════════════════════════════════════════
@@ -15,13 +16,17 @@ const SIGN_NAMES  = ['Aries','Taurus','Gemini','Cancer','Leo','Virgo',
 const PLANET_GLYPHS = {
   sun:'☉', moon:'☽', mercury:'☿', venus:'♀', mars:'♂',
   jupiter:'♃', saturn:'♄', uranus:'♅', neptune:'♆', pluto:'♇',
-  node: '☊', lilith: '⚸', chiron: '⚷'
+  node: '☊', lilith: '⚸', chiron: '⚷',
+  fortune: '⊗', spirit: '🕯️', eros: '❤',
+  cupido: 'ꓵ', hades: '♇', zeus: '⚡', kronos: '♄', apollon: '☀', admetos: '⨀', vulkanus: '🔥', poseidon: '🔱'
 };
 
 const PLANET_COLORS = {
   sun: '#FFD700', moon: '#C0C0C0', mercury: '#FFA500', venus: '#4CAF50', mars: '#FF4136',
   jupiter: '#9B51E0', saturn: '#5D4037', uranus: '#00BCD4', neptune: '#2196F3', pluto: '#8B0000',
-  node: '#1F2226', chiron: '#B8A456', lilith: '#000000'
+  node: '#1F2226', chiron: '#B8A456', lilith: '#000000',
+  fortune: '#D4AF37', spirit: '#9B51E0', eros: '#FF69B4',
+  cupido: '#FFC0CB', hades: '#4B0082', zeus: '#FF0000', kronos: '#00008B', apollon: '#FFFF00', admetos: '#808080', vulkanus: '#FF4500', poseidon: '#ADD8E6', ap: '#1F2226'
 };
 
 const SIGN_RULERS_TRADITIONAL = {
@@ -36,10 +41,10 @@ const SIGN_RULERS_MODERN = {
 
 const S = 600;
 const CX = S / 2, CY = S / 2;
-const R_OUTER     = 228;
-const R_ZODIAC_IN = 198;
-const R_PLANET    = 168;
-const R_INNER     = 75;
+const R_OUTER     = 275;
+const R_ZODIAC_IN = 245;
+const R_PLANET    = 215;
+const R_INNER     = 95;
 
 function polar(r, deg) {
   const rad = deg * Math.PI / 180;
@@ -64,14 +69,14 @@ function placePlanets(planets, asc, houseCusps = []) {
     trueSa: toSVG(p.longitude, asc),
     sa: toSVG(p.longitude, asc),
     nudgedSa: toSVG(p.longitude, asc),
-    r: 182 // Orbita bazowa
+    r: 230 // Orbita bazowa
   }));
   
   // 2. Sortowanie zodiakalne (Gwarancja Monotoniczności - Rozdział 5.1)
   // Musimy obsłużyć zawijanie 360/0
   items.sort((a, b) => a.sa - b.sa);
 
-  const R_LEVELS = [170, 138, 106]; // Zmniejszone promienie, by etykiety nie wchodziły na znaki
+  const R_LEVELS = [225, 193, 161]; // Zwiększone promienie
   const GLYPH_SIZE_PX = 30; // Większy margines kolizji
   const axes = houseCusps.length >= 12 
     ? [houseCusps[0], houseCusps[3], houseCusps[6], houseCusps[9]].map(c => toSVG(c.longitude, asc))
@@ -139,7 +144,7 @@ function placePlanets(planets, asc, houseCusps = []) {
   return placed;
 }
 
-function placeOuterPlanets(planets, asc, r, color, houseCusps = [], customMinAng = 10.0) {
+function placeOuterPlanets(planets, asc, r, color, houseCusps = [], customMinAng = 8.0) {
   if (!planets?.length) return [];
   
   const axes = houseCusps.length >= 12 
@@ -160,17 +165,20 @@ function placeOuterPlanets(planets, asc, r, color, houseCusps = [], customMinAng
   // 2. Sorting to maintain zodiacal order
   items.sort((a, b) => a.nudgedSa - b.nudgedSa);
 
-  // 3. Multi-pass collision resolution (Planets vs Planets & Planets vs Axes)
-  for (let pass = 0; pass < 50; pass++) {
+  // Dynamic min angle based on density
+  const minAng = planets.length > 20 ? 5.0 : customMinAng;
+
+  // 3. Multi-pass collision resolution
+  for (let pass = 0; pass < 80; pass++) {
     let moved = false;
     
-    // A. Check against House Axes (MC, AC, etc.)
+    // A. Check against House Axes
     for (let i = 0; i < items.length; i++) {
       axes.forEach(ax => {
-        if (angDist(items[i].nudgedSa, ax) < 8.0) {
+        if (angDist(items[i].nudgedSa, ax) < 6.0) {
           const diff = (items[i].nudgedSa - ax + 360) % 360;
           const pushDir = diff < 180 ? 1 : -1;
-          items[i].nudgedSa = (items[i].nudgedSa + pushDir * 0.5 + 360) % 360;
+          items[i].nudgedSa = (items[i].nudgedSa + pushDir * 0.4 + 360) % 360;
           moved = true;
         }
       });
@@ -182,8 +190,8 @@ function placeOuterPlanets(planets, asc, r, color, houseCusps = [], customMinAng
       let diff = items[j].nudgedSa - items[i].nudgedSa;
       if (diff < 0) diff += 360;
 
-      if (diff < customMinAng && diff < 180) {
-        let push = (customMinAng - diff) / 2 + 0.1;
+      if (diff < minAng && diff < 180) {
+        let push = (minAng - diff) / 2 + 0.05;
         items[i].nudgedSa = (items[i].nudgedSa - push + 360) % 360;
         items[j].nudgedSa = (items[j].nudgedSa + push) % 360;
         moved = true;
@@ -198,7 +206,20 @@ function placeOuterPlanets(planets, asc, r, color, houseCusps = [], customMinAng
   });
 }
 
-export default function ZodiacWheel({ visible, chartData, activePlanets, activeAspects, activeLots, activeStars, activePatterns, transitData, prognosticData, dispositorContext }) {
+export default function ZodiacWheel({ 
+  visible, 
+  chartData, 
+  secondChartData, 
+  isSynastry,
+  activePlanets, 
+  activeAspects, 
+  activeLots, 
+  activeStars, 
+  activePatterns, 
+  transitData, 
+  prognosticData, 
+  dispositorContext 
+}) {
   const svgRef = useRef(null);
   const allPlanets = useMemo(() => chartData?.planets || [], [chartData]);
   const allAspects = useMemo(() => chartData?.aspects || [], [chartData]);
@@ -251,6 +272,12 @@ export default function ZodiacWheel({ visible, chartData, activePlanets, activeA
     const filtered = chartData.lots.filter(l => activeLots.has(l.key));
     return placeOuterPlanets(filtered, asc, R_ZODIAC_IN - 12, '#D4AF37', houses);
   }, [chartData?.lots, activeLots, asc, houses]);
+
+  const secondPlaced = useMemo(() => {
+    if (!secondChartData?.planets) return [];
+    // Orbit for synastry/dual wheel - slightly outside the natal but inside transits
+    return placeOuterPlanets(secondChartData.planets, asc, R_OUTER + 25, '#3B82F6', houses);
+  }, [secondChartData, asc, houses]);
 
   const starsPlaced = useMemo(() => {
     if (!chartData?.stars || !activeStars) return [];
@@ -379,29 +406,55 @@ export default function ZodiacWheel({ visible, chartData, activePlanets, activeA
             const pattern = chartData.patterns[idx];
             if (!pattern) return null;
             
+            // Calculate coordinates for all planets in the pattern
             const pts = pattern.planets.map(pk => {
-              const p = planets.find(pl => pl.key === pk);
+              const p = allPlanets.find(pl => pl.key === pk);
               if (!p) return null;
-              return polar(72, toSVG(p.longitude, asc));
+              return { key: pk, ...polar(92, toSVG(p.longitude, asc)) };
             }).filter(Boolean);
 
             if (pts.length < 2) return null;
 
-            const d = pts.map((p, i) => (i === 0 ? `M ${p.x} ${p.y}` : `L ${p.x} ${p.y}`)).join(' ') + ' Z';
-
             return (
               <g key={`outline-${pKey}`} className="animate-in fade-in duration-700">
-                <path 
-                  d={d} 
-                  stroke="#D4AF37" 
-                  strokeWidth="2.5" 
-                  fill="#D4AF37" 
-                  fillOpacity="0.08" 
-                  strokeLinejoin="round" 
-                  strokeLinecap="round"
-                  style={{ filter: 'drop-shadow(0 0 3px rgba(212, 175, 55, 0.4))' }}
-                />
-                <path d={d} stroke="white" strokeWidth="0.5" fill="none" opacity="0.3" />
+                {/* Draw lines between ALL pairs in the pattern to show internal axes (oppositions/squares) */}
+                {pts.map((p1, i) => (
+                  pts.slice(i + 1).map((p2, j) => (
+                    <line 
+                      key={`line-${i}-${j}`}
+                      x1={p1.x} y1={p1.y} x2={p2.x} y2={p2.y}
+                      stroke="#D4AF37"
+                      strokeWidth="2.5"
+                      strokeOpacity="0.8"
+                      strokeLinecap="round"
+                      style={{ filter: 'drop-shadow(0 0 3px rgba(212, 175, 55, 0.4))' }}
+                    />
+                  ))
+                ))}
+                
+                {/* Subtle White Inner Glow Lines */}
+                {pts.map((p1, i) => (
+                  pts.slice(i + 1).map((p2, j) => (
+                    <line 
+                      key={`glow-${i}-${j}`}
+                      x1={p1.x} y1={p1.y} x2={p2.x} y2={p2.y}
+                      stroke="white"
+                      strokeWidth="0.5"
+                      strokeOpacity="0.3"
+                    />
+                  ))
+                ))}
+
+                {/* Optional: Add a light fill for the "outer" shape by sorting zodiacally */}
+                {(() => {
+                  const sortedPts = [...pts].sort((a, b) => {
+                    const pA = allPlanets.find(p => p.key === a.key);
+                    const pB = allPlanets.find(p => p.key === b.key);
+                    return (pA?.longitude || 0) - (pB?.longitude || 0);
+                  });
+                  const d = sortedPts.map((p, i) => (i === 0 ? `M ${p.x} ${p.y}` : `L ${p.x} ${p.y}`)).join(' ') + ' Z';
+                  return <path d={d} fill="#D4AF37" fillOpacity="0.05" />;
+                })()}
               </g>
             );
           })
@@ -446,7 +499,12 @@ export default function ZodiacWheel({ visible, chartData, activePlanets, activeA
 
           return (
             <g key={`h${i}`}>
-              <line x1={p1.x} y1={p1.y} x2={p2.x} y2={p2.y} stroke={isAxis ? '#333' : '#CCC'} strokeWidth={isAxis ? '2' : '0.5'} />
+              <line 
+                x1={p1.x} y1={p1.y} x2={p2.x} y2={p2.y} 
+                stroke={isAxis ? '#1F2226' : '#C9BEB1'} 
+                strokeWidth={isAxis ? '1' : '0.5'} 
+                strokeOpacity={isAxis ? '0.2' : '0.1'}
+              />
               {label && (
                 <text 
                   {...polar(labelR, sa)} 
@@ -454,7 +512,7 @@ export default function ZodiacWheel({ visible, chartData, activePlanets, activeA
                   dominantBaseline="central" 
                   fontSize="11" 
                   fontWeight="bold" 
-                  fill="#333" 
+                  fill="#1F2226" 
                   fontFamily="sans-serif"
                 >
                   {label}
@@ -475,21 +533,39 @@ export default function ZodiacWheel({ visible, chartData, activePlanets, activeA
           const isIndirect = dispositorContext?.subjects?.indirect?.includes(p.key);
           const isSelected = dispositorContext?.selectedPlanet === p.key;
 
+          // HELIOCENTRIC SUN: Render in Center
+          if (p.key === 'sun' && p.longitude === 0 && p.latitude === 0 && p.speed === 0) {
+            return (
+              <g key="heliocentric-sun" className="animate-in fade-in zoom-in duration-1000">
+                <circle cx={CX} cy={CY} r={35} fill="url(#sunGlow)" opacity="0.6" />
+                <foreignObject x={CX - 20} y={CY - 20} width="40" height="40">
+                  <div className="flex items-center justify-center w-full h-full">
+                    <PlanetGlyph name="sun" size={32} className="text-[#D4AF37]" />
+                  </div>
+                </foreignObject>
+                <defs>
+                  <radialGradient id="sunGlow">
+                    <stop offset="0%" stopColor="#D4AF37" stopOpacity="0.8" />
+                    <stop offset="100%" stopColor="#D4AF37" stopOpacity="0" />
+                  </radialGradient>
+                </defs>
+              </g>
+            );
+          }
+
           return (
             <g key={p.key} className="transition-all duration-700">
               {/* Rim Tick */}
               <line x1={polar(R_ZODIAC_IN, p.trueSa).x} y1={polar(R_ZODIAC_IN, p.trueSa).y} x2={polar(R_ZODIAC_IN - 4, p.trueSa).x} y2={polar(R_ZODIAC_IN - 4, p.trueSa).y} stroke="#333" strokeWidth="1" />
               
-              {/* Leader Line if moved radially or angularly */}
-              {(angDist(p.trueSa, p.nudgedSa) > 0.5 || p.r !== 170) && (
-                <path 
-                  d={`M ${polar(R_ZODIAC_IN - 4, p.trueSa).x} ${polar(R_ZODIAC_IN - 4, p.trueSa).y} Q ${polar((R_ZODIAC_IN + p.r)/2, p.trueSa).x} ${polar((R_ZODIAC_IN + p.r)/2, p.trueSa).y} ${px} ${py}`} 
-                  stroke="#AAA" 
-                  strokeWidth="0.5" 
-                  strokeDasharray="1,2" 
-                  fill="none"
-                />
-              )}
+              {/* Leader Line - Always visible for precision */}
+              <path 
+                d={`M ${polar(R_ZODIAC_IN - 4, p.trueSa).x} ${polar(R_ZODIAC_IN - 4, p.trueSa).y} Q ${polar((R_ZODIAC_IN + p.r)/2, p.trueSa).x} ${polar((R_ZODIAC_IN + p.r)/2, p.trueSa).y} ${px} ${py}`} 
+                stroke="#AAA" 
+                strokeWidth="0.5" 
+                strokeDasharray="1,2" 
+                fill="none"
+              />
               
               {/* Territory Highlighting */}
               {(isDirect || isIndirect || isSelected) && (
@@ -508,7 +584,7 @@ export default function ZodiacWheel({ visible, chartData, activePlanets, activeA
                 <div className="flex items-center justify-center w-full h-full">
                   <PlanetGlyph 
                     name={p.key} 
-                    size={24} 
+                    size={28} 
                     style={{ color: (dispositorContext?.selectedPlanet ? PLANET_COLORS[p.key] : '#1a1a1a') }}
                   />
                 </div>
@@ -533,14 +609,12 @@ export default function ZodiacWheel({ visible, chartData, activePlanets, activeA
               {/* Green Rim Tick at exact position */}
               <line x1={rimPos.x} y1={rimPos.y} x2={tickPos.x} y2={tickPos.y} stroke="#166534" strokeWidth="1.5" />
               
-              {/* Leader Line if nudged */}
-              {angDist(p.trueSa, p.nudgedSa) > 0.1 && (
-                <line 
-                  x1={tickPos.x} y1={tickPos.y} 
-                  x2={p.px} y2={p.py} 
-                  stroke="#166534" strokeWidth="0.5" strokeDasharray="2,2" opacity="0.6"
-                />
-              )}
+              {/* Leader Line - Always visible for precision */}
+              <line 
+                x1={tickPos.x} y1={tickPos.y} 
+                x2={p.px} y2={p.py} 
+                stroke="#166534" strokeWidth="0.5" strokeDasharray="2,2" opacity="0.6"
+              />
               <foreignObject x={p.px - 15} y={p.py - 15} width="30" height="30">
                 <div className="flex flex-col items-center justify-center leading-none text-[#166534]">
                   <PlanetGlyph name={p.key} size={14} />
@@ -553,27 +627,66 @@ export default function ZodiacWheel({ visible, chartData, activePlanets, activeA
           );
         })}
 
-        {/* 7. PROGNOSTICS (Standard Pro: Concentric + Leader Lines + Rim Ticks) */}
+        {/* 7. PROGNOSTICS */}
         {prognosticPlaced.map((p, i) => {
           const rimPos = polar(R_OUTER, p.trueSa);
           const tickPos = polar(R_OUTER + 4, p.trueSa);
           return (
             <g key={`prog-${i}`}>
-              {/* Orange Rim Tick at exact position */}
               <line x1={rimPos.x} y1={rimPos.y} x2={tickPos.x} y2={tickPos.y} stroke="#D97706" strokeWidth="1.5" />
-              
-              {/* Leader Line if nudged */}
-              {angDist(p.trueSa, p.nudgedSa) > 0.1 && (
-                <line 
-                  x1={tickPos.x} y1={tickPos.y} 
-                  x2={p.px} y2={p.py} 
-                  stroke="#D97706" strokeWidth="0.5" strokeDasharray="2,2" opacity="0.6"
-                />
-              )}
+              <line x1={tickPos.x} y1={tickPos.y} x2={p.px} y2={p.py} stroke="#D97706" strokeWidth="0.5" strokeDasharray="2,2" opacity="0.6" />
               <foreignObject x={p.px - 15} y={p.py - 15} width="30" height="30">
                 <div className="flex flex-col items-center justify-center leading-none text-[#D97706]">
                   <PlanetGlyph name={p.key} size={14} />
-                  <span className="text-[7px] font-bold whitespace-nowrap mt-0.5">
+                  <span className="text-[7px] font-bold mt-0.5">{(p.degreeInSign || "").split(' ')[0]}{(p.degreeInSign || "").split(' ')[1] || "00'"}</span>
+                </div>
+              </foreignObject>
+            </g>
+          );
+        })}
+
+        {/* 7b. SECOND CHART (Synastry / Dual Wheel / Multi-System) */}
+        {secondChartData?.houses?.cusps && (
+          <g className="animate-in fade-in duration-1000">
+            {secondChartData.houses.cusps.map((h, i) => {
+              const sa = toSVG(h.longitude, asc);
+              const p1 = polar(R_INNER, sa), p2 = polar(R_OUTER, sa);
+              return (
+                <line 
+                  key={`h2-${i}`}
+                  x1={p1.x} y1={p1.y} x2={p2.x} y2={p2.y} 
+                  stroke="#3B82F6" 
+                  strokeWidth="0.8" 
+                  strokeDasharray="4,4"
+                  opacity="0.4"
+                />
+              );
+            })}
+          </g>
+        )}
+
+        {secondPlaced.map((p, i) => {
+          const rimPos = polar(R_OUTER, p.trueSa);
+          const tickPos = polar(R_OUTER + 6, p.trueSa);
+          return (
+            <g key={`second-${i}`} className="animate-in fade-in zoom-in duration-700" style={{ transitionDelay: `${i * 30}ms` }}>
+              {/* Blue Rim Tick at exact position */}
+              <line x1={rimPos.x} y1={rimPos.y} x2={tickPos.x} y2={tickPos.y} stroke="#3B82F6" strokeWidth="2" />
+              
+              {/* Leader Line - Always visible for precision */}
+              <line 
+                x1={tickPos.x} y1={tickPos.y} 
+                x2={p.px} y2={p.py} 
+                stroke="#3B82F6" strokeWidth="0.5" strokeDasharray="1,2" opacity="0.4"
+              />
+
+              {/* Background Glow for clarity */}
+              <circle cx={p.px} cy={p.py} r={12} fill="#F1E9DE" opacity="0.8" />
+
+              <foreignObject x={p.px - 15} y={p.py - 15} width="30" height="30">
+                <div className="flex flex-col items-center justify-center leading-none text-[#3B82F6]">
+                  <PlanetGlyph name={p.key} size={16} className="drop-shadow-sm" />
+                  <span className="text-[7px] font-black mt-0.5 bg-[#1F2226] text-white px-1 rounded-sm">
                     {(p.degreeInSign || "").split(' ')[0]}{(p.degreeInSign || "").split(' ')[1] || "00'"}
                   </span>
                 </div>
@@ -591,13 +704,20 @@ export default function ZodiacWheel({ visible, chartData, activePlanets, activeA
 
           return (
             <g key={`lot-${p.key}-${i}`}>
-              <text x={p.px} y={p.py} textAnchor="middle" dominantBaseline="central" fontSize="12" fill={color} fontWeight="bold">{symbol}</text>
-              <text x={p.px} y={p.py + 10} textAnchor="middle" fontSize="6" fill={color} fontWeight="bold" fontFamily="monospace">
-                {(p.degreeInSign || "").split(' ')[0]}{(p.degreeInSign || "").split(' ')[1] || "00'"}
-              </text>
+              <foreignObject x={p.px - 15} y={p.py - 15} width="30" height="40">
+                <div className="flex flex-col items-center justify-center w-full h-full leading-none">
+                  <div className="text-[14px] mb-0.5" style={{ color }}>{symbol}</div>
+                  <div className="text-[7px] font-bold font-mono opacity-80" style={{ color }}>
+                    {(p.degreeInSign || "").split(' ')[0]}{(p.degreeInSign || "").split(' ')[1] || "00'"}
+                  </div>
+                </div>
+              </foreignObject>
             </g>
           );
         })}
+
+
+
 
         {/* 9. FIXED STARS */}
         {starsPlaced.map((p, i) => (

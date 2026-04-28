@@ -1,5 +1,5 @@
 import React from 'react';
-import { Star, RefreshCcw, Settings } from 'lucide-react';
+import { Star, RefreshCcw, Settings, Globe } from 'lucide-react';
 
 export default function Navbar({ stage, onReset, onToggleSettings }) {
   return (
@@ -26,6 +26,15 @@ export default function Navbar({ stage, onReset, onToggleSettings }) {
         
         {stage === 'dashboard' && (
           <>
+            {new URLSearchParams(window.location.search).get('mode') === 'relocation_view' && (
+              <button
+                onClick={() => window.location.href = '/?mode=acg'}
+                className="flex items-center gap-2 px-4 py-1.5 rounded-lg border border-[#1F2226]/30 text-[#1F2226] text-[10px] font-bold uppercase tracking-wider hover:bg-[#1F2226] hover:text-[#F1E9DE] transition-all duration-300"
+              >
+                <Globe size={14} />
+                Powrót do Atlasu
+              </button>
+            )}
             <button
               onClick={onToggleSettings}
               className="flex items-center gap-2 px-4 py-1.5 rounded-lg border border-[#D4AF37]/30 text-[#1F2226] text-[10px] font-bold uppercase tracking-wider hover:bg-[#D4AF37]/10 transition-all duration-300"
