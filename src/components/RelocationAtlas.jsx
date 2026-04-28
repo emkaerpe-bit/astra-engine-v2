@@ -52,6 +52,7 @@ const RelocationAtlas = ({ chartData }) => {
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   // View State
   const [view, setView] = useState('globe'); // 'globe' or 'dashboard'
+  const [atlasMode, setAtlasMode] = useState('acg'); // 'acg' or 'relocation'
 
   // --- SAFETY CHECK: Prevent crash if no data exists ---
   if (!chartData && !localStorage.getItem('natalChart')) {
@@ -106,7 +107,7 @@ const RelocationAtlas = ({ chartData }) => {
 
   useEffect(() => {
     if (acgGroupRef.current && acgData) {
-      if (showAllLines) {
+      if (atlasMode === 'acg' && showAllLines) {
         // Filter acgData based on active planets
         const filteredData = {};
         activeACGPlanets.forEach(key => {
@@ -117,7 +118,7 @@ const RelocationAtlas = ({ chartData }) => {
         acgGroupRef.current.clear();
       }
     }
-  }, [acgData, activeACGPlanets, showAllLines]);
+  }, [acgData, activeACGPlanets, showAllLines, atlasMode]);
 
   const togglePlanetLine = (key) => {
     const next = new Set(activeACGPlanets);
@@ -971,16 +972,41 @@ const RelocationAtlas = ({ chartData }) => {
             </div>
           </div>
           
-          <div className="flex items-center gap-4">
-             <button 
-                onClick={() => setShowAllLines(!showAllLines)} 
-                className={`flex items-center gap-3 px-6 py-3 rounded-xl text-[10px] font-bold uppercase tracking-widest transition-all border ${showAllLines ? 'bg-[#D4AF37]/10 border-[#D4AF37]/40 text-[#D4AF37]' : 'bg-white/5 border-white/10 text-white/40'}`}
-             >
-                <Zap size={14} className={showAllLines ? 'animate-pulse' : ''} />
-                {showAllLines ? 'Warstwy Aktywne' : 'Warstwy Ukryte'}
-             </button>
+          <div className="flex items-center gap-6">
+             {/* MODE SWITCHER */}
+             <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-1 flex gap-1 shadow-2xl mr-4">
+                <button 
+                  onClick={() => setAtlasMode('acg')}
+                  className={`px-6 py-2.5 rounded-xl transition-all font-mono text-[9px] uppercase tracking-widest flex items-center gap-2 ${
+                    atlasMode === 'acg' ? 'bg-[#D4AF37] text-black shadow-lg shadow-[#D4AF37]/20' : 'text-white/40 hover:text-white'
+                  }`}
+                >
+                  <Globe size={12} />
+                  Astrokartografia
+                </button>
+                <button 
+                  onClick={() => setAtlasMode('relocation')}
+                  className={`px-6 py-2.5 rounded-xl transition-all font-mono text-[9px] uppercase tracking-widest flex items-center gap-2 ${
+                    atlasMode === 'relocation' ? 'bg-[#D4AF37] text-black shadow-lg shadow-[#D4AF37]/20' : 'text-white/40 hover:text-white'
+                  }`}
+                >
+                  <MapPin size={12} />
+                  Relokacja
+                </button>
+             </div>
+
+             {atlasMode === 'acg' && (
+               <button 
+                  onClick={() => setShowAllLines(!showAllLines)} 
+                  className={`flex items-center gap-3 px-6 py-3 rounded-xl text-[10px] font-bold uppercase tracking-widest transition-all border ${showAllLines ? 'bg-[#D4AF37]/10 border-[#D4AF37]/40 text-[#D4AF37]' : 'bg-white/5 border-white/10 text-white/40'}`}
+               >
+                  <Zap size={14} className={showAllLines ? 'animate-pulse' : ''} />
+                  {showAllLines ? 'Warstwy Aktywne' : 'Warstwy Ukryte'}
+               </button>
+             )}
+             
              <button onClick={() => setIsRotating(!isRotating)} className={`px-6 py-3 rounded-xl text-[10px] font-bold uppercase tracking-widest transition-all border ${isRotating ? 'bg-white/5 border-white/10 text-white/40 hover:text-white' : 'bg-[#D4AF37] border-[#D4AF37] text-black shadow-lg shadow-[#D4AF37]/30'}`}>
-                {isRotating ? 'Zatrzymaj Rotację' : 'Wznów Rotację'}
+                {isRotating ? 'Zatrzymaj' : 'Wznów'}
              </button>
              <button onClick={() => window.history.back()} className="p-3 rounded-full bg-white/5 border border-white/10 text-white/40 hover:text-white transition-all">
                 <ArrowLeft size={18} />
@@ -1028,7 +1054,9 @@ const RelocationAtlas = ({ chartData }) => {
                 ))}
               </div>
 
-              <span className="text-[11px] text-[#D4AF37] font-mono uppercase tracking-[0.3em] font-black mb-6">Filtry Planetarne</span>
+              {atlasMode === 'acg' && (
+                 <>
+                   <span className="text-[11px] text-[#D4AF37] font-mono uppercase tracking-[0.3em] font-black mb-6">Filtry Planetarne</span>
               <div className="grid grid-cols-2 gap-2 overflow-y-auto max-h-[300px] pr-2 custom-scrollbar">
                 {acgData && Object.keys(acgData).map(key => (
                   <button 
@@ -1042,35 +1070,15 @@ const RelocationAtlas = ({ chartData }) => {
                   </button>
                 ))}
               </div>
+                 </>
+               )}
            </div>
 
            {selectedCity && (
              <div className="mt-auto p-8 rounded-[2rem] bg-[#D4AF37]/10 border border-[#D4AF37]/30 animate-in fade-in slide-in-from-bottom-6 z-10 relative">
                 <h3 className="text-[#D4AF37] font-serif italic text-2xl mb-4">{selectedCity.name}</h3>
                  
-                 {/* LOCAL ACG INFLUENCE ANALYSIS */}
-                 <div className="mb-6 space-y-3">
-                    <h4 className="text-[10px] font-mono uppercase tracking-[0.3em] text-[#D4AF37] opacity-60">Dominacja Lokalna</h4>
-                    <div className="space-y-2">
-                       {getNearbyInfluences().length > 0 ? getNearbyInfluences().slice(0, 3).map((inf, i) => (
-                         <div key={i} className="flex items-center justify-between p-3 bg-black/40 rounded-xl border border-[#D4AF37]/10 group hover:border-[#D4AF37]/40 transition-all">
-                            <div className="flex items-center gap-3">
-                               <div className="w-7 h-7 rounded-full bg-[#D4AF37]/10 flex items-center justify-center border border-[#D4AF37]/20">
-                                  <span className="text-[9px] text-[#D4AF37] font-black">{inf.line}</span>
-                               </div>
-                               <span className="text-[10px] font-bold uppercase tracking-widest text-white/80">{inf.planet}</span>
-                            </div>
-                            <div className="text-right">
-                               <span className="text-[9px] font-mono text-[#D4AF37] block font-black">MOC: {(100 - inf.dist * 15).toFixed(0)}%</span>
-                            </div>
-                         </div>
-                       )) : (
-                         <div className="text-[9px] text-white/20 font-mono italic p-3 border border-dashed border-white/10 rounded-xl">Brak bezpośrednich linii w promieniu 500km.</div>
-                       )}
-                    </div>
-                 </div>
-                
-                {relocatedData ? (
+                 {relocatedData ? (
                   <div className="space-y-4 animate-in fade-in zoom-in duration-500">
                      <div className="p-4 bg-black/40 rounded-xl border border-[#D4AF37]/20">
                         <div className="text-[9px] text-[#D4AF37] font-mono uppercase tracking-widest mb-2">Relokowany Ascendent</div>
@@ -1116,7 +1124,7 @@ const RelocationAtlas = ({ chartData }) => {
            <div ref={mountRef} className="w-full h-full cursor-grab active:cursor-grabbing" />
            
            {/* ACG LEGEND (Floating Bottom Right) */}
-           {showAllLines && activeACGPlanets.size > 0 && (
+           {atlasMode === 'acg' && showAllLines && activeACGPlanets.size > 0 && (
              <div className="absolute bottom-10 right-10 z-[100] p-8 bg-[#1F2226]/80 backdrop-blur-2xl border border-white/10 rounded-[2rem] shadow-2xl animate-in fade-in slide-in-from-right-10 duration-700 w-72">
                 <div className="flex items-center gap-3 mb-6">
                    <Compass size={18} className="text-[#D4AF37]" />
@@ -1171,9 +1179,7 @@ const RelocationAtlas = ({ chartData }) => {
           </div>
         )}
 
-        {view === 'dashboard' && relocatedData && (
-             <div className="absolute inset-0 z-[200] bg-[#F1E9DE] overflow-y-auto p-12 animate-in fade-in slide-in-from-right-10 duration-500">
-                <button onClick={() => setView('globe')} className="mb-10 flex items-center gap-3 text-[#1F2226] hover:opacity-60 font-mono text-[10px] uppercase tracking-widest">
+         className="mb-10 flex items-center gap-3 text-[#1F2226] hover:opacity-60 font-mono text-[10px] uppercase tracking-widest">
                    <ArrowLeft size={16} /> Powrót do Globusa
                 </button>
                 
