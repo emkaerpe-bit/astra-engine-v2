@@ -33,7 +33,7 @@ const AstroControlPanel = ({
   onLoadSecondChart,
   onOpenSynastrySetup
 }) => {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const [showGeometry, setShowGeometry] = useState(false);
 
   const handleOpenACG = () => {
@@ -41,6 +41,17 @@ const AstroControlPanel = ({
       localStorage.setItem('acg_chart_data', JSON.stringify(chartData));
       window.open(window.location.origin + window.location.pathname + '?mode=acg', '_blank');
     }
+  };
+
+  const handleReset = (e) => {
+    if (e) e.stopPropagation();
+    const standard = ['sun', 'moon', 'mercury', 'venus', 'mars', 'jupiter', 'saturn', 'uranus', 'neptune', 'pluto', 'node', 'south_node', 'chiron', 'lilith'];
+    setActivePlanets(new Set(standard));
+    const aspectTypes = Array.from(new Set(aspects.map(a => a.type)));
+    setActiveAspects(new Set(aspectTypes));
+    setActiveLots(new Set(lots.map(l => l.key)));
+    setActiveStars(new Set(stars.map(s => s.key)));
+    setActivePatterns(new Set(patterns.map(p => p.type)));
   };
 
   const togglePlanet = (key) => {
@@ -80,14 +91,22 @@ const AstroControlPanel = ({
         className="w-full px-4 py-3 bg-[#E6DDD2] flex items-center justify-between border-b border-[#C9BEB1]/50 hover:bg-[#DDD1C3] transition-colors"
       >
         <div className="flex items-center gap-2">
-          <Settings size={14} className="text-[#1F2226]" />
-          <span className="font-mono text-[10px] text-[#1F2226] tracking-widest uppercase font-bold">Panel Kontrolny [V4-UNIVERSAL]</span>
+          <Eye size={14} className="text-[#1F2226]" />
+          <span className="font-mono text-[10px] text-[#1F2226] tracking-widest uppercase font-bold">Widoczność i Systemy [V5-LUXE]</span>
         </div>
-        {isOpen ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
+        <div className="flex items-center gap-3">
+          <div 
+            onClick={handleReset}
+            className="px-3 py-1 bg-[#1F2226] text-[#D4AF37] rounded-full text-[8px] font-bold uppercase tracking-widest hover:bg-black transition-all"
+          >
+            Resetuj
+          </div>
+          {isOpen ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
+        </div>
       </button>
 
       {isOpen && (
-        <div className="p-4 space-y-6 max-h-[calc(100vh-180px)] overflow-y-auto custom-scrollbar pr-2 pb-8">
+        <div className="p-4 space-y-6 max-h-[65vh] overflow-y-auto custom-scrollbar pr-2 pb-8 animate-in slide-in-from-top-2 duration-300">
           {/* AstroCartoGraphy Toggle */}
           <div className="bg-[#1F2226] p-4 rounded-xl border border-[#D4AF37]/30 shadow-lg">
             <h4 className="font-serif italic text-sm text-[#D4AF37] mb-3 border-b border-[#D4AF37]/20 pb-1 flex items-center gap-2">
@@ -418,22 +437,6 @@ const AstroControlPanel = ({
 
 
 
-          <div className="pt-2">
-             <button 
-               onClick={() => {
-                  const lilithIndex = planets.findIndex(p => p.key === 'lilith');
-                  const defaultPlanets = planets.filter((_, idx) => idx <= lilithIndex || lilithIndex === -1).map(p => p.key);
-                  setActivePlanets(new Set(defaultPlanets));
-                 setActiveAspects(new Set(aspectTypes));
-                 setActiveLots(new Set(lots.map(l => l.key)));
-                 setActiveStars(new Set(stars.map(s => s.key)));
-                 setActivePatterns(new Set(patterns.map(p => p.type)));
-               }}
-               className="w-full py-2 text-[9px] font-mono uppercase tracking-[0.2em] text-[#8C8883] hover:text-[#1F2226] transition-colors border border-dashed border-[#C9BEB1] rounded"
-             >
-               Resetuj Widok
-             </button>
-          </div>
         </div>
       )}
     </div>
