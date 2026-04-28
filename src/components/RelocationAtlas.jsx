@@ -53,10 +53,35 @@ const RelocationAtlas = ({ chartData }) => {
   // View State
   const [view, setView] = useState('globe'); // 'globe' or 'dashboard'
 
+  // --- SAFETY CHECK: Prevent crash if no data exists ---
+  if (!chartData && !localStorage.getItem('natalChart')) {
+    return (
+      <div className="h-screen w-full bg-[#1F2226] flex items-center justify-center">
+        <div className="text-center space-y-4">
+          <Loader2 className="text-[#D4AF37] animate-spin mx-auto" size={48} />
+          <p className="text-[#D4AF37] font-mono text-[10px] uppercase tracking-[0.5em]">Oczekiwanie na dane horoskopu...</p>
+        </div>
+      </div>
+    );
+  }
+
+  const natalData = chartData || JSON.parse(localStorage.getItem('natalChart'));
+  
+  if (!natalData || !natalData.metadata) {
+    return (
+      <div className="h-screen w-full bg-[#1F2226] flex items-center justify-center">
+        <div className="text-center space-y-4">
+          <Loader2 className="text-[#D4AF37] animate-spin mx-auto" size={48} />
+          <p className="text-[#D4AF37] font-mono text-[10px] uppercase tracking-[0.5em]">Inicjalizacja macierzy astrologicznej...</p>
+        </div>
+      </div>
+    );
+  }
+
   useEffect(() => {
     // Load original chart data from localStorage OR props
     const saved = localStorage.getItem('acg_chart_data');
-    const dataToUse = saved ? JSON.parse(saved) : chartData;
+    const dataToUse = saved ? JSON.parse(saved) : originalData;
 
     if (dataToUse) {
       console.log("ACG_DEBUG: Data Source Found", saved ? "localStorage" : "Props");
@@ -110,7 +135,10 @@ const RelocationAtlas = ({ chartData }) => {
       const birthDate = originalData.input.date;
       const birthTime = originalData.input.time;
 
-      const response = await fetch('http://localhost:3005/api/chart', {
+      const API_URL = import.meta.env.VITE_API_URL || 
+        (window.location.hostname === 'localhost' ? 'http://localhost:3005' : '');
+
+      const response = await fetch(`${API_URL}/api/chart`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

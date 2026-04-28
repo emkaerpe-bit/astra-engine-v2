@@ -28,7 +28,8 @@ import AstroCartoGraphy from './components/AstroCartoGraphy';
 import RelocationAtlas from './components/RelocationAtlas';
 
 
-const API_URL = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://localhost:3005' : '');
+const API_URL = import.meta.env.VITE_API_URL || 
+  (window.location.hostname === 'localhost' ? 'http://localhost:3005' : '');
 
 export default function App() {
 
@@ -74,14 +75,18 @@ export default function App() {
       }
     } else if (params.get('mode') === 'acg') {
       setStage('acg_standalone');
-      const data = localStorage.getItem('acg_chart_data');
-      if (data) {
-        try {
-          const parsed = JSON.parse(data);
-          setChartData(parsed);
-          setIsStandaloneACG(true);
-        } catch (e) {
-          console.error("Failed to parse ACG data", e);
+      const originalData = chartData || JSON.parse(localStorage.getItem('natalChart'));
+  
+      if (!originalData || !originalData.metadata) {
+        const data = localStorage.getItem('acg_chart_data');
+        if (data) {
+          try {
+            const parsed = JSON.parse(data);
+            setChartData(parsed);
+            setIsStandaloneACG(true);
+          } catch (e) {
+            console.error("Failed to parse ACG data", e);
+          }
         }
       }
     }
