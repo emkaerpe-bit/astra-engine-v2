@@ -15,8 +15,13 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const app = express();
+const __dirname = path.resolve();
+
 app.use(cors());
 app.use(express.json());
+
+// Serve static files from the React app
+app.use(express.static(path.join(__dirname, 'dist')));
 
 const PORT = process.env.PORT || 3005;
 
@@ -204,6 +209,12 @@ app.post('/api/sabians', async (req, res) => {
     console.error('[ASTRA] Sabian error:', err);
     res.status(500).json({ error: 'Sabian calculation failed', detail: err.message });
   }
+});
+
+// The "catchall" handler: for any request that doesn't
+// match one above, send back React's index.html file.
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
 });
 
 app.listen(PORT, () => {
